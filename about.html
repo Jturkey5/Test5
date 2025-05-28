@@ -432,7 +432,7 @@
             }
 
             section {
-                padding: 3rem 1rem;
+                padding: 2rem 1rem;
             }
 
             .card {
@@ -449,6 +449,106 @@
                 font-size: 1rem;
                 line-height: 1.6;
             }
+
+            .min-h-screen {
+                min-height: 100vh;
+                padding-top: 4rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem;
+            }
+
+            .text-center {
+                text-align: center;
+            }
+
+            .max-w-4xl {
+                width: 100%;
+                padding: 0 1rem;
+            }
+
+            .py-12 {
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+            }
+
+            .mb-8 {
+                margin-bottom: 1.5rem;
+            }
+
+            .space-y-8 > * + * {
+                margin-top: 1.5rem;
+            }
+
+            .card p {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Ensure content is visible on mobile */
+        .gradient-text {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: white; /* Fallback */
+        }
+
+        section {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        .card, .timeline-item, .team-member {
+            opacity: 1 !important;
+            transform: none !important;
+            transition: all 0.3s ease;
+        }
+
+        /* Fix potential overflow issues */
+        body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        .container {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Ensure proper spacing */
+        .py-12 {
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
+
+        .px-4 {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        /* Fix navigation spacing */
+        nav {
+            padding: 1rem;
+        }
+
+        .nav-container {
+            width: 100%;
+        }
+
+        /* Ensure text is visible */
+        p, h1, h2, h3, h4, h5, h6 {
+            color: var(--foreground);
+        }
+
+        .text-white\/80 {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .text-white\/60 {
+            color: rgba(255, 255, 255, 0.6);
         }
 
         /* Touch-friendly improvements */
@@ -491,6 +591,124 @@
         .mobile-menu a {
             transition: background-color 0.3s ease;
         }
+
+        /* Mobile menu styles */
+        .mobile-menu {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(-10px);
+            pointer-events: none;
+        }
+
+        .mobile-menu.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .mobile-menu.hidden {
+            display: none;
+        }
+
+        /* Enhanced mobile menu buttons */
+        .mobile-menu a {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(
+                125deg,
+                rgba(255, 255, 255, 0.05) 0%,
+                rgba(255, 255, 255, 0.08) 100%
+            );
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .mobile-menu a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transition: 0.5s ease;
+        }
+
+        .mobile-menu a:hover::before {
+            left: 100%;
+        }
+
+        .mobile-menu a:active {
+            transform: scale(0.98);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        /* Hamburger button styles */
+        .hamburger {
+            padding: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hamburger:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .hamburger:active {
+            transform: scale(0.95);
+        }
+
+        .hamburger svg {
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu.show ~ .hamburger svg {
+            transform: rotate(90deg);
+        }
+
+        /* Mobile menu container */
+        .mobile-menu .p-4 {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .mobile-menu a {
+            font-size: 1rem;
+            padding: 1rem 1.25rem;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 3.5rem;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Add icons to menu items */
+        .mobile-menu a::after {
+            content: '→';
+            margin-left: 0.5rem;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu a:hover::after {
+            opacity: 1;
+            transform: translateX(0);
+        }
     </style>
 </head>
 <body>
@@ -525,7 +743,7 @@
                         <a href="#technology" class="nav-link">Technology</a>
                         <a href="#team" class="nav-link">Team</a>
                     </div>
-                    <button class="hamburger md:hidden">
+                    <button class="hamburger md:hidden" id="hamburgerBtn" aria-label="Toggle menu">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
@@ -535,14 +753,14 @@
         </div>
     </nav>
 
-    <div class="min-h-screen pt-24">
+    <div class="min-h-screen">
         <!-- Hero Section -->
-        <section class="py-12 px-4">
+        <section class="py-12 px-4 mt-16">
             <div class="max-w-4xl mx-auto text-center">
                 <h1 class="text-4xl md:text-5xl font-bold mb-6">
                     <span class="gradient-text">About VibeTrading AI</span>
                 </h1>
-                <p class="text-xl text-white/80 mb-8">
+                <p class="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
                     Revolutionizing trading through advanced AI technology and human expertise
                 </p>
             </div>
@@ -552,22 +770,22 @@
         <section class="py-12 px-4">
             <div class="max-w-4xl mx-auto">
                 <div class="card p-8 mb-12">
-                    <h2 class="text-2xl font-bold mb-6">Our Mission</h2>
+                    <h2 class="text-2xl font-bold mb-6 gradient-text">Our Mission</h2>
                     <p class="text-white/80 mb-6">
                         At VibeTrading AI, we're on a mission to democratize algorithmic trading by combining cutting-edge artificial intelligence with intuitive user experience. We believe that sophisticated trading strategies shouldn't be limited to institutional investors.
                     </p>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-                        <div class="text-center">
+                        <div class="text-center card p-4">
                             <div class="text-3xl mb-2">🎯</div>
                             <h3 class="font-bold mb-2">Precision</h3>
                             <p class="text-white/60">Data-driven decisions with minimal emotion</p>
                         </div>
-                        <div class="text-center">
+                        <div class="text-center card p-4">
                             <div class="text-3xl mb-2">🔒</div>
                             <h3 class="font-bold mb-2">Security</h3>
                             <p class="text-white/60">Enterprise-grade security measures</p>
                         </div>
-                        <div class="text-center">
+                        <div class="text-center card p-4">
                             <div class="text-3xl mb-2">📈</div>
                             <h3 class="font-bold mb-2">Growth</h3>
                             <p class="text-white/60">Sustainable long-term performance</p>
@@ -636,8 +854,8 @@
         <!-- Team Section -->
         <section id="team" class="py-12 px-4 bg-black/30">
             <div class="max-w-4xl mx-auto">
-                <h2 class="text-3xl font-bold mb-12 text-center section-title">
-                    <span class="gradient-text" data-text="Our Team">Our Team</span>
+                <h2 class="text-3xl font-bold mb-12 text-center">
+                    <span class="gradient-text">Our Team</span>
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="card p-8 text-center team-member">
@@ -665,8 +883,8 @@
         <!-- Contact Section -->
         <section class="py-16 px-4">
             <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-3xl font-bold mb-8 section-title">
-                    <span class="gradient-text" data-text="Get in Touch">Get in Touch</span>
+                <h2 class="text-3xl font-bold mb-8">
+                    <span class="gradient-text">Get in Touch</span>
                 </h2>
                 <p class="text-white/80 mb-12 text-lg max-w-2xl mx-auto">
                     Have questions about our technology or want to learn more? We'd love to hear from you.
@@ -678,27 +896,75 @@
         </section>
     </div>
 
+    <!-- Mobile Menu -->
+    <div class="mobile-menu fixed w-full bg-black/95 backdrop-blur-lg hidden z-50" id="mobileMenu" style="top: 60px;">
+        <div class="p-4 space-y-2">
+            <a href="index.html" class="block w-full text-center py-3 px-4 rounded-lg bg-white/5 hover:bg-white/10">
+                Home
+            </a>
+            <a href="#technology" class="block w-full text-center py-3 px-4 rounded-lg bg-white/5 hover:bg-white/10">
+                Technology
+            </a>
+            <a href="#team" class="block w-full text-center py-3 px-4 rounded-lg bg-white/5 hover:bg-white/10">
+                Team
+            </a>
+            <a href="demo.html" class="block w-full text-center py-3 px-4 rounded-lg bg-white/5 hover:bg-white/10">
+                Demo
+            </a>
+        </div>
+    </div>
+
     <script>
         // Mobile menu functionality
-        const hamburger = document.querySelector('.hamburger');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        let touchStartY = 0;
-        let touchEndY = 0;
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
 
-        hamburger.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            document.body.style.overflow = mobileMenu.classList.contains('hidden') ? 'auto' : 'hidden';
+        function toggleMenu() {
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                // Force a reflow
+                mobileMenu.offsetHeight;
+                mobileMenu.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            } else {
+                mobileMenu.classList.remove('show');
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                }, 300); // Match the transition duration
+            }
+        }
+
+        // Add click event listener to hamburger button
+        hamburgerBtn.addEventListener('click', toggleMenu);
+
+        // Close menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                toggleMenu();
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.classList.contains('hidden') && 
+                !mobileMenu.contains(e.target) && 
+                !hamburgerBtn.contains(e.target)) {
+                toggleMenu();
+            }
         });
 
         // Close menu on scroll
         window.addEventListener('scroll', () => {
             if (!mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.add('hidden');
-                document.body.style.overflow = 'auto';
+                toggleMenu();
             }
         });
 
         // Handle touch events for swipe to close
+        let touchStartY = 0;
+        let touchEndY = 0;
+
         mobileMenu.addEventListener('touchstart', (e) => {
             touchStartY = e.changedTouches[0].screenY;
         });
@@ -706,18 +972,7 @@
         mobileMenu.addEventListener('touchend', (e) => {
             touchEndY = e.changedTouches[0].screenY;
             if (touchStartY < touchEndY) {
-                mobileMenu.classList.add('hidden');
-                document.body.style.overflow = 'auto';
-            }
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!mobileMenu.classList.contains('hidden') && 
-                !mobileMenu.contains(e.target) && 
-                !hamburger.contains(e.target)) {
-                mobileMenu.classList.add('hidden');
-                document.body.style.overflow = 'auto';
+                toggleMenu();
             }
         });
 
@@ -729,8 +984,7 @@
         // Handle orientation change
         window.addEventListener('orientationchange', () => {
             if (!mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.add('hidden');
-                document.body.style.overflow = 'auto';
+                toggleMenu();
             }
         });
 

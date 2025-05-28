@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibeTrading AI - Advanced Trading Intelligence</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Experience the future of trading with VibeTrading AI. Our advanced LLM-powered platform provides real-time market analysis, trading signals, and AI-driven insights.">
+    <meta name="keywords" content="AI trading, machine learning trading, cryptocurrency analysis, stock market AI, trading signals, market analysis">
+    <meta name="author" content="VibeTrading AI">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="VibeTrading AI - Advanced Trading Intelligence">
+    <meta property="og:description" content="Experience the future of trading with AI-powered market analysis and real-time trading signals.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vibetrading.ai">
+    <meta property="og:image" content="/images/og-image.jpg">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="VibeTrading AI - Advanced Trading Intelligence">
+    <meta name="twitter:description" content="Experience the future of trading with AI-powered market analysis and real-time trading signals.">
+    <meta name="twitter:image" content="/images/twitter-card.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #10a37f;
+            --secondary: #4a90e2;
+            --background: #0a0a0a;
+            --foreground: #ffffff;
+            --card-background: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --hover-color: #0e8e6d;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--foreground);
+            font-family: system-ui, -apple-system, sans-serif;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Futuristic background elements */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(16, 163, 127, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(74, 144, 226, 0.15) 0%, transparent 50%),
+                linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            z-index: -1;
+        }
+
+        .grid-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .gradient-text::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: -1;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: blur(8px);
+            opacity: 0.5;
+        }
+
+        .card {
+            background: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 1rem;
+            background: linear-gradient(125deg, transparent 0%, rgba(255, 255, 255, 0.03) 50%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover::after {
+            opacity: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .button {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: inline-block;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            opacity: 0.95;
+        }
+
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: 0.5s ease;
+            z-index: 1;
+        }
+
+        .button:hover::before {
+            left: 100%;
+        }
+
+        .market-card {
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .market-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .trend-up {
+            color: #10b981;
+        }
+
+        .trend-down {
+            color: #ef4444;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(8px);
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            animation: slideDown 0.2s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-10px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .desktop-menu {
+                display: none;
+            }
+            .hamburger {
+                display: block;
+            }
+            .hero-text {
+                font-size: 2.5rem !important;
+                padding: 0 1rem;
+            }
+            .market-card {
+                height: 250px;
+                margin: 0.5rem;
+            }
+            .card {
+                padding: 1rem;
+                margin: 0.5rem;
+                min-height: unset;
+            }
+            .logo-text {
+                font-size: 1.25rem;
+            }
+            .nav-container {
+                padding: 0.5rem;
+            }
+            .mobile-menu {
+                padding: 1rem;
+                touch-action: pan-y;
+                -webkit-overflow-scrolling: touch;
+            }
+            .mobile-menu a {
+                padding: 1rem;
+                margin: 0.25rem 0;
+                border-radius: 0.5rem;
+                background: rgba(255, 255, 255, 0.05);
+                transition: all 0.3s ease;
+            }
+            .mobile-menu a:active {
+                background: rgba(255, 255, 255, 0.1);
+                transform: scale(0.98);
+            }
+            .button {
+                padding: 1rem 1.5rem;
+                width: 100%;
+                max-width: 300px;
+                margin: 0.5rem auto;
+                min-height: 44px; /* Touch target size */
+            }
+            section {
+                padding: 2rem 1rem;
+            }
+            .grid {
+                grid-template-columns: 1fr !important;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .glow {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px rgba(16, 163, 127, 0.5); }
+            to { text-shadow: 0 0 20px rgba(74, 144, 226, 0.8); }
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            transition: all 0.2s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: all 0.2s ease;
+            transform: translateX(-50%);
+            opacity: 0.8;
+        }
+
+        .nav-link:hover {
+            color: white;
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        .nav-container {
+            position: relative;
+            padding: 0.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            background: linear-gradient(90deg, 
+                rgba(16, 163, 127, 0.1),
+                rgba(74, 144, 226, 0.1),
+                rgba(16, 163, 127, 0.1)
+            );
+            border-radius: 0.75rem;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-container:hover::before {
+            opacity: 0.5;
+        }
+
+        /* Touch-friendly styles */
+        .button, .nav-link, .card {
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .button:active, .nav-link:active, .card:active {
+            transform: scale(0.98);
+        }
+
+        /* Improved scrolling */
+        body {
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+        }
+
+        /* Better touch targets */
+        .nav-link, .button, .market-suggestion {
+            min-height: 44px;
+            min-width: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Prevent zoom on input focus */
+        @media screen and (max-width: 768px) {
+            input[type="text"],
+            input[type="email"],
+            input[type="number"] {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body class="gradient-bg">
+    <div class="grid-pattern"></div>
+    <nav class="fixed w-full z-50 px-4 py-3">
+        <div class="max-w-7xl mx-auto">
+            <div class="nav-container">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-8">
+                        <a href="index.html" class="text-xl font-bold gradient-text glow" data-text="VibeTrading AI">
+                            <span class="flex items-center">
+                                <svg class="w-8 h-8 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="url(#nav-gradient)" stroke-width="2"/>
+                                    <path d="M2 17L12 22L22 17" stroke="url(#nav-gradient)" stroke-width="2"/>
+                                    <path d="M2 12L12 17L22 12" stroke="url(#nav-gradient)" stroke-width="2"/>
+                                    <defs>
+                                        <linearGradient id="nav-gradient" x1="2" y1="12" x2="22" y2="12">
+                                            <stop offset="0%" stop-color="#10a37f"/>
+                                            <stop offset="100%" stop-color="#4a90e2"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                                VibeTrading AI
+                            </span>
+                        </a>
+                    </div>
+                    <div class="hidden md:flex items-center space-x-1">
+                        <a href="about.html" class="nav-link">About</a>
+                        <a href="#markets" class="nav-link">Markets</a>
+                        <a href="#technology" class="nav-link">Technology</a>
+                        <a href="demo.html" class="nav-link">Demo</a>
+                        <div class="ml-4">
+                            <a href="#contact" class="button">
+                                Get Started
+                                <svg class="w-4 h-4 ml-2 inline-block" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <button class="hamburger md:hidden" onclick="toggleMenu()">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-menu fixed w-full bg-black/95 backdrop-blur-lg hidden z-50" id="mobileMenu">
+            <div class="p-4 space-y-2">
+                <a href="about.html" class="block w-full text-center py-3 px-4 rounded-lg bg-white/5 hover:bg-white/10">
+                    About
+                </a>
+                <a href="#markets" class="block w-full text-center py-3 px-4 rounded-lg bg-white/5 hover:bg-white/10">
+                    Markets
+                </a>
+                <a href="#technology" class="block w-full text-center py-3 px-4 rounded-lg bg-white/5 hover:bg-white/10">
+                    Technology
+                </a>
+                <a href="demo.html" class="block w-full text-center py-3 px-4 rounded-lg bg-white/5 hover:bg-white/10">
+                    Demo
+                </a>
+                <a href="#contact" class="block w-full text-center py-3 px-4 rounded-lg bg-gradient-to-r from-primary to-secondary">
+                    Get Started
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="min-h-screen pt-16">
+        <!-- Hero Section -->
+        <section class="py-20 px-4 relative overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <div class="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 opacity-30"></div>
+            </div>
+            <div class="max-w-7xl mx-auto text-center relative z-10">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 hero-text">
+                    <span class="gradient-text glow" data-text="Trading, Elevated">Trading, Elevated</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-white/80 mb-8 max-w-2xl mx-auto px-4 floating">
+                    Experience the future of trading with our advanced AI system
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="demo.html" class="button text-lg">Try Demo</a>
+                    <a href="#markets" class="button text-lg bg-white/10 hover:bg-white/20">View Markets</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Markets Section -->
+        <section id="markets" class="py-16">
+            <div class="max-w-7xl mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+                    <span class="gradient-text" data-text="Recommended Markets">Recommended Markets</span>
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="card market-card">
+                        <div class="market-info">
+                            <div>
+                                <h3 class="text-xl font-bold">BTC/USD</h3>
+                                <p class="text-white/60">Bitcoin</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-xl font-bold trend-up">$43,250.00</p>
+                                <p class="trend-up">+2.5% <i class="fas fa-arrow-up"></i></p>
+                            </div>
+                        </div>
+                        <canvas id="btcChart" class="flex-1"></canvas>
+                    </div>
+                    <div class="card market-card">
+                        <div class="market-info">
+                            <div>
+                                <h3 class="text-xl font-bold">ETH/USD</h3>
+                                <p class="text-white/60">Ethereum</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-xl font-bold trend-up">$2,850.00</p>
+                                <p class="trend-up">+1.8% <i class="fas fa-arrow-up"></i></p>
+                            </div>
+                        </div>
+                        <canvas id="ethChart" class="flex-1"></canvas>
+                    </div>
+                    <div class="card market-card">
+                        <div class="market-info">
+                            <div>
+                                <h3 class="text-xl font-bold">AAPL</h3>
+                                <p class="text-white/60">Apple Inc.</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-xl font-bold trend-down">$175.25</p>
+                                <p class="trend-down">-0.8% <i class="fas fa-arrow-down"></i></p>
+                            </div>
+                        </div>
+                        <canvas id="aaplChart" class="flex-1"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section id="performance" class="py-16">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="card text-center">
+                        <div class="text-4xl font-bold gradient-text mb-2" data-text="87%">87%</div>
+                        <div class="text-white/80">Win Rate</div>
+                        <p class="mt-4 text-sm text-white/60">Verified through extensive backtesting</p>
+                    </div>
+                    <div class="card text-center">
+                        <div class="text-4xl font-bold gradient-text mb-2" data-text="2.8x">2.8x</div>
+                        <div class="text-white/80">Return Multiplier</div>
+                        <p class="mt-4 text-sm text-white/60">Average monthly performance</p>
+                    </div>
+                    <div class="card text-center">
+                        <div class="text-4xl font-bold gradient-text mb-2" data-text="0.92">0.92</div>
+                        <div class="text-white/80">Sharpe Ratio</div>
+                        <p class="mt-4 text-sm text-white/60">Risk-adjusted return metric</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-16">
+            <div class="max-w-7xl mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+                    <span class="gradient-text" data-text="Why Choose VibeTrading AI?">Why Choose VibeTrading AI?</span>
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    <div class="card p-8">
+                        <div class="text-3xl mb-4">🤖</div>
+                        <h3 class="text-xl font-bold mb-4">Advanced LLM Technology</h3>
+                        <p class="text-white/80">
+                            Our AI trading assistant is powered by state-of-the-art language models, trained on decades of market data and financial expertise.
+                        </p>
+                    </div>
+                    <div class="card p-8">
+                        <div class="text-3xl mb-4">📊</div>
+                        <h3 class="text-xl font-bold mb-4">Real-time Analysis</h3>
+                        <p class="text-white/80">
+                            Get instant market insights, trend analysis, and trading recommendations backed by powerful AI algorithms.
+                        </p>
+                    </div>
+                    <div class="card p-8">
+                        <div class="text-3xl mb-4">🎯</div>
+                        <h3 class="text-xl font-bold mb-4">Precision Trading</h3>
+                        <p class="text-white/80">
+                            Make informed decisions with our AI's proven 87% accuracy rate in trend prediction and pattern recognition.
+                        </p>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a href="about.html" class="button">Learn More About Us</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology Section -->
+        <section id="technology" class="py-16 bg-black/30">
+            <div class="max-w-7xl mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+                    <span class="gradient-text" data-text="Our Technology">Our Technology</span>
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div class="space-y-8">
+                        <div class="card p-6">
+                            <h3 class="text-xl font-bold mb-4">Natural Language Processing</h3>
+                            <p class="text-white/80">
+                                Our AI understands and analyzes market sentiment from news, social media, and financial reports in real-time.
+                            </p>
+                        </div>
+                        <div class="card p-6">
+                            <h3 class="text-xl font-bold mb-4">Pattern Recognition</h3>
+                            <p class="text-white/80">
+                                Advanced algorithms detect complex market patterns and predict potential trend reversals with high accuracy.
+                            </p>
+                        </div>
+                        <div class="card p-6">
+                            <h3 class="text-xl font-bold mb-4">Risk Management</h3>
+                            <p class="text-white/80">
+                                Sophisticated risk assessment tools help protect your investments and optimize position sizing.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card p-8">
+                        <h3 class="text-xl font-bold mb-4">Key Features</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-center">
+                                <span class="text-primary mr-2">✓</span>
+                                <span class="text-white/80">Real-time market analysis and predictions</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-primary mr-2">✓</span>
+                                <span class="text-white/80">Natural language interaction for market queries</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-primary mr-2">✓</span>
+                                <span class="text-white/80">Automated pattern recognition and alerts</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-primary mr-2">✓</span>
+                                <span class="text-white/80">Custom trading strategy development</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-primary mr-2">✓</span>
+                                <span class="text-white/80">Risk management recommendations</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-primary mr-2">✓</span>
+                                <span class="text-white/80">Portfolio optimization suggestions</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-primary mr-2">✓</span>
+                                <span class="text-white/80">24/7 market monitoring and alerts</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16">
+            <div class="max-w-7xl mx-auto px-4 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8">
+                    <span class="gradient-text" data-text="Ready to Elevate Your Trading?">Ready to Elevate Your Trading?</span>
+                </h2>
+                <p class="text-xl text-white/80 mb-8">
+                    Join the next generation of AI-powered trading and experience the future of financial markets.
+                </p>
+                <a href="#" class="button text-lg">Get Started Now</a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Improved mobile menu handling
+        const hamburger = document.querySelector('.hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        let touchStartY = 0;
+        let touchEndY = 0;
+
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            document.body.style.overflow = mobileMenu.classList.contains('hidden') ? 'auto' : 'hidden';
+        });
+
+        // Close menu on scroll
+        window.addEventListener('scroll', () => {
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Handle touch events for swipe to close
+        mobileMenu.addEventListener('touchstart', (e) => {
+            touchStartY = e.changedTouches[0].screenY;
+        });
+
+        mobileMenu.addEventListener('touchend', (e) => {
+            touchEndY = e.changedTouches[0].screenY;
+            if (touchStartY < touchEndY) {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.classList.contains('hidden') && 
+                !mobileMenu.contains(e.target) && 
+                !hamburger.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Prevent body scroll when menu is open
+        mobileMenu.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+        }, { passive: false });
+
+        // Handle orientation change
+        window.addEventListener('orientationchange', () => {
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Chart creation
+        function createChart(canvasId, label, color) {
+            const ctx = document.getElementById(canvasId).getContext('2d');
+            const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+            gradient.addColorStop(0, `${color}33`);
+            gradient.addColorStop(1, 'transparent');
+
+            // Generate random data
+            const data = Array.from({length: 24}, () => Math.random() * 100);
+            
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: Array.from({length: 24}, (_, i) => i + 1),
+                    datasets: [{
+                        label: label,
+                        data: data,
+                        borderColor: color,
+                        backgroundColor: gradient,
+                        tension: 0.4,
+                        fill: true,
+                        pointRadius: 0,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            display: false
+                        },
+                        y: {
+                            display: false
+                        }
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
+                    }
+                }
+            });
+        }
+
+        // Create charts when page loads
+        window.addEventListener('load', () => {
+            createChart('btcChart', 'Bitcoin', '#10b981');
+            createChart('ethChart', 'Ethereum', '#10b981');
+            createChart('aaplChart', 'Apple', '#ef4444');
+        });
+    </script>
+</body>
+</html> 

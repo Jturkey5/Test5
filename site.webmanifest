@@ -1,0 +1,21 @@
+{
+    "name": "VibeTrading AI",
+    "short_name": "VibeTrade",
+    "description": "AI-powered trading platform with real-time market analysis",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0a0a0a",
+    "theme_color": "#10a37f",
+    "icons": [
+        {
+            "src": "/images/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+} 

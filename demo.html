@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Trading Demo - VibeTrading AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #10a37f;
+            --secondary: #4a90e2;
+            --background: #0a0a0a;
+            --foreground: #ffffff;
+            --card-background: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --hover-color: #0e8e6d;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--foreground);
+            font-family: system-ui, -apple-system, sans-serif;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Futuristic background elements */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(16, 163, 127, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(74, 144, 226, 0.15) 0%, transparent 50%),
+                linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            z-index: -1;
+        }
+
+        .grid-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card {
+            background: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 1rem;
+            background: linear-gradient(125deg, transparent 0%, rgba(255, 255, 255, 0.03) 50%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover::after {
+            opacity: 1;
+        }
+
+        .chat-container {
+            height: 500px;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+            padding: 1rem;
+        }
+
+        .message {
+            margin: 0.5rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            max-width: 80%;
+            animation: fadeIn 0.3s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .user-message {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            margin-left: auto;
+        }
+
+        .bot-message {
+            background: var(--card-background);
+            border: 1px solid var(--border-color);
+        }
+
+        .button {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: inline-block;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            opacity: 0.95;
+        }
+
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: 0.5s ease;
+            z-index: 1;
+        }
+
+        .button:hover::before {
+            left: 100%;
+        }
+
+        .typing-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 0.5rem 1rem;
+            background: var(--card-background);
+            border-radius: 1rem;
+            margin: 0.5rem;
+        }
+
+        .typing-dot {
+            width: 4px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
+        .market-suggestion {
+            display: inline-flex;
+            align-items: center;
+            background: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+            margin: 0.25rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .market-suggestion:hover {
+            transform: translateY(-1px);
+            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .market-suggestion::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(125deg, transparent 0%, rgba(255, 255, 255, 0.05) 50%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .market-suggestion:hover::after {
+            opacity: 1;
+        }
+
+        .chart-container {
+            height: 200px;
+            margin-top: 1rem;
+        }
+
+        input[type="text"] {
+            transition: all 0.2s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(16, 163, 127, 0.1);
+        }
+
+        .message::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(125deg, transparent 0%, rgba(255, 255, 255, 0.03) 50%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .message:hover::after {
+            opacity: 1;
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            transition: all 0.2s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: all 0.2s ease;
+            transform: translateX(-50%);
+            opacity: 0.8;
+        }
+
+        .nav-link:hover {
+            color: white;
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        .nav-container {
+            position: relative;
+            padding: 0.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            background: linear-gradient(90deg, 
+                rgba(16, 163, 127, 0.1),
+                rgba(74, 144, 226, 0.1),
+                rgba(16, 163, 127, 0.1)
+            );
+            border-radius: 0.75rem;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-container:hover::before {
+            opacity: 0.5;
+        }
+
+        /* Mobile-first media queries */
+        @media (max-width: 768px) {
+            .chat-container {
+                height: calc(100vh - 200px);
+                margin-top: 60px;
+            }
+
+            .message {
+                max-width: 90%;
+                padding: 0.75rem;
+                margin: 0.5rem;
+                font-size: 0.95rem;
+            }
+
+            .market-suggestion {
+                padding: 0.75rem;
+                margin: 0.25rem;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: calc(50% - 0.5rem);
+            }
+
+            .chart-container {
+                height: 180px;
+                margin: 1rem 0;
+            }
+
+            .input-container {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                padding: 1rem;
+                background: var(--background);
+                border-top: 1px solid var(--border-color);
+                z-index: 10;
+            }
+
+            #userInput {
+                font-size: 16px;
+                padding: 0.75rem;
+                min-height: 44px;
+            }
+
+            .button {
+                min-height: 44px;
+                min-width: 44px;
+                padding: 0.75rem 1rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+                padding: 0 0.5rem;
+            }
+
+            .card {
+                padding: 1rem;
+                margin: 0.5rem 0;
+            }
+        }
+
+        /* Touch-friendly improvements */
+        .button, .market-suggestion, .nav-link {
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .button:active, .market-suggestion:active, .nav-link:active {
+            transform: scale(0.98);
+        }
+
+        /* Improved scrolling */
+        .chat-container {
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+            padding-bottom: 80px;
+        }
+
+        /* Better touch targets */
+        .button, .market-suggestion, .nav-link {
+            min-height: 44px;
+            min-width: 44px;
+        }
+
+        /* Prevent zoom on input focus */
+        @media screen and (max-width: 768px) {
+            input[type="text"] {
+                font-size: 16px;
+            }
+        }
+
+        /* Improved mobile layout */
+        .chat-interface {
+            display: flex;
+            flex-direction: column;
+            height: 600px; /* Fixed height */
+            max-height: 80vh; /* Maximum height on mobile */
+            margin: 2rem auto;
+            background: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .message-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            padding-bottom: 80px; /* Space for input container */
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .input-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background: linear-gradient(
+                to bottom,
+                transparent,
+                var(--background) 20%
+            );
+            border-top: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 0.5rem;
+            padding: 0.25rem;
+        }
+
+        #userInput {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 0.75rem;
+            color: var(--foreground);
+            font-size: 1rem;
+        }
+
+        #userInput:focus {
+            outline: none;
+        }
+
+        .message {
+            max-width: 85%;
+            margin-bottom: 1rem;
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .chat-interface {
+                height: 500px;
+                margin: 1rem auto;
+                border-radius: 0.75rem;
+            }
+
+            .message-container {
+                padding: 0.75rem;
+                padding-bottom: 70px;
+            }
+
+            .input-container {
+                padding: 0.75rem;
+            }
+
+            .message {
+                max-width: 90%;
+                margin-bottom: 0.75rem;
+            }
+        }
+
+        /* Improved scrollbar styling */
+        .message-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .message-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .message-container::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 3px;
+        }
+
+        .message-container::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="p-4">
+    <div class="grid-pattern"></div>
+    <nav class="fixed w-full z-50 px-4 py-3">
+        <div class="max-w-7xl mx-auto">
+            <div class="nav-container">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-8">
+                        <a href="index.html" class="text-xl font-bold gradient-text" data-text="VibeTrading AI">
+                            <span class="flex items-center">
+                                <svg class="w-8 h-8 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="url(#nav-gradient)" stroke-width="2"/>
+                                    <path d="M2 17L12 22L22 17" stroke="url(#nav-gradient)" stroke-width="2"/>
+                                    <path d="M2 12L12 17L22 12" stroke="url(#nav-gradient)" stroke-width="2"/>
+                                    <defs>
+                                        <linearGradient id="nav-gradient" x1="2" y1="12" x2="22" y2="12">
+                                            <stop offset="0%" stop-color="#10a37f"/>
+                                            <stop offset="100%" stop-color="#4a90e2"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                                VibeTrading AI
+                            </span>
+                        </a>
+                    </div>
+                    <div class="flex items-center space-x-1">
+                        <a href="index.html" class="nav-link">
+                            <svg class="w-4 h-4 mr-1 inline-block" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                            </svg>
+                            Back to Home
+                        </a>
+                        <a href="about.html" class="nav-link">About</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-4xl mx-auto mt-20">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">
+                <span class="gradient-text">AI Trading Assistant Demo</span>
+            </h1>
+            <p class="text-white/80 max-w-2xl mx-auto">
+                Experience the power of our AI trading assistant. Ask questions about market analysis, get trading recommendations, or explore market trends.
+            </p>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <div class="card p-4">
+                <div class="text-2xl mb-2">💡</div>
+                <h3 class="font-bold mb-1">Smart Analysis</h3>
+                <p class="text-sm text-white/60">Get instant insights on any market or asset</p>
+            </div>
+            <div class="card p-4">
+                <div class="text-2xl mb-2">📈</div>
+                <h3 class="font-bold mb-1">Live Charts</h3>
+                <p class="text-sm text-white/60">Visual analysis of market trends</p>
+            </div>
+            <div class="card p-4">
+                <div class="text-2xl mb-2">🎯</div>
+                <h3 class="font-bold mb-1">Trading Signals</h3>
+                <p class="text-sm text-white/60">Actionable trading recommendations</p>
+            </div>
+        </div>
+
+        <!-- Chat Interface -->
+        <div class="chat-interface">
+            <div class="message-container" id="chatContainer">
+                <div class="bot-message message">
+                    👋 Hello! I'm your AI trading assistant. Here are some things you can ask me about:
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <div class="market-suggestion" onclick="suggestMarket('BTC')">Bitcoin Analysis</div>
+                        <div class="market-suggestion" onclick="suggestMarket('ETH')">Ethereum Trends</div>
+                        <div class="market-suggestion" onclick="suggestMarket('AAPL')">Apple Stock</div>
+                        <div class="market-suggestion" onclick="suggestMarket('Market')">Market Overview</div>
+                    </div>
+                    <div class="text-sm text-white/60 mt-4">
+                        Try asking:
+                        <ul class="list-disc list-inside mt-2 space-y-1">
+                            <li>"What's the current trend for Bitcoin?"</li>
+                            <li>"Analyze AAPL's technical indicators"</li>
+                            <li>"Show me potential trading opportunities"</li>
+                            <li>"What's your risk assessment for ETH?"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="input-container">
+                <div class="input-wrapper">
+                    <input type="text" id="userInput" 
+                        placeholder="Ask about market analysis or trading strategies..."
+                        onkeypress="handleKeyPress(event)">
+                    <button onclick="sendMessage()" class="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Example Analysis -->
+        <div class="mt-8">
+            <h2 class="text-xl font-bold mb-4">Example Analysis</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="card p-4">
+                    <h3 class="font-bold mb-2">Technical Analysis</h3>
+                    <div class="space-y-2 text-sm text-white/80">
+                        <div class="flex justify-between">
+                            <span>RSI (14)</span>
+                            <span class="text-green-400">65.8</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>MACD</span>
+                            <span class="text-green-400">Bullish Crossover</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Moving Averages</span>
+                            <span class="text-green-400">Strong Buy</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card p-4">
+                    <h3 class="font-bold mb-2">Market Sentiment</h3>
+                    <div class="space-y-2 text-sm text-white/80">
+                        <div class="flex justify-between">
+                            <span>News Sentiment</span>
+                            <span class="text-green-400">Positive</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Social Media</span>
+                            <span class="text-yellow-400">Neutral</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Institutional Flow</span>
+                            <span class="text-green-400">Bullish</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="text-center text-sm text-white/60">
+            <p>This is a demo version of our AI trading assistant. For full access to all features and real-time data, please sign up for a full account.</p>
+            <div class="mt-4">
+                <a href="#" class="button">Get Full Access</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let isTyping = false;
+        let touchStartY = 0;
+        let touchEndY = 0;
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter' && !isTyping) {
+                sendMessage();
+            }
+        }
+
+        function showTypingIndicator() {
+            const container = document.getElementById('chatContainer');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'typing-indicator';
+            typingDiv.innerHTML = `
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            `;
+            container.appendChild(typingDiv);
+            container.scrollTop = container.scrollHeight;
+            return typingDiv;
+        }
+
+        function suggestMarket(market) {
+            const input = document.getElementById('userInput');
+            input.value = getMarketQuery(market);
+            input.focus();
+            sendMessage();
+        }
+
+        function getMarketQuery(market) {
+            const queries = {
+                'BTC': "What's the current trend for Bitcoin and potential entry points?",
+                'ETH': "Can you analyze Ethereum's price action and key support levels?",
+                'AAPL': "What's your analysis of Apple stock's technical indicators?",
+                'Market': "Give me an overview of current market conditions and opportunities.",
+                'Risk': "What are the current risk levels in the market?",
+                'Volume': "Analyze the trading volume patterns",
+                'Trend': "Identify the dominant market trend"
+            };
+            return queries[market] || `Analyze ${market} current trends and provide trading recommendations`;
+        }
+
+        function createChart(containerId, data, color) {
+            const ctx = document.getElementById(containerId).getContext('2d');
+            const gradient = ctx.createLinearGradient(0, 0, 0, 200);
+            gradient.addColorStop(0, `${color}33`);
+            gradient.addColorStop(1, 'transparent');
+
+            return new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: Array.from({length: data.length}, (_, i) => i + 1),
+                    datasets: [{
+                        data: data,
+                        borderColor: color,
+                        backgroundColor: gradient,
+                        tension: 0.4,
+                        fill: true,
+                        pointRadius: 0,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { display: false },
+                        y: { display: false }
+                    }
+                }
+            });
+        }
+
+        function addChartToMessage(messageDiv) {
+            const chartContainer = document.createElement('div');
+            chartContainer.className = 'chart-container';
+            const canvas = document.createElement('canvas');
+            const chartId = 'chart-' + Date.now();
+            canvas.id = chartId;
+            chartContainer.appendChild(canvas);
+            messageDiv.appendChild(chartContainer);
+
+            const data = Array.from({length: 24}, () => Math.random() * 100);
+            createChart(chartId, data, '#10a37f');
+        }
+
+        async function sendMessage() {
+            if (isTyping) return;
+
+            const input = document.getElementById('userInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                isTyping = true;
+                addMessage(message, 'user');
+                input.value = '';
+
+                const typingIndicator = showTypingIndicator();
+                
+                // Simulate AI thinking time
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                typingIndicator.remove();
+
+                // Predefined responses based on message content
+                let response = '';
+                let shouldAddChart = false;
+
+                if (message.toLowerCase().includes('bitcoin') || message.toLowerCase().includes('btc')) {
+                    response = "Based on current analysis, Bitcoin is showing strong momentum with key resistance at $48,500. RSI indicates slightly overbought conditions at 72, suggesting potential short-term consolidation. Support levels are established at $42,300 and $40,800. Volume profile shows accumulation at these levels.";
+                    shouldAddChart = true;
+                } else if (message.toLowerCase().includes('ethereum') || message.toLowerCase().includes('eth')) {
+                    response = "Ethereum's technical analysis shows a bullish pattern forming. The 20-day EMA has crossed above the 50-day MA, signaling potential upward momentum. Key resistance levels at $2,950 and $3,100. Watch for a breakout confirmation with increased volume.";
+                    shouldAddChart = true;
+                } else if (message.toLowerCase().includes('apple') || message.toLowerCase().includes('aapl')) {
+                    response = "Apple stock is consolidating near all-time highs. MACD shows positive divergence, while the RSI at 65 indicates room for further upside. Support at $175 has been tested multiple times, showing strong buyer interest at this level.";
+                    shouldAddChart = true;
+                } else if (message.toLowerCase().includes('market') || message.toLowerCase().includes('overview')) {
+                    response = "Market sentiment is cautiously optimistic. S&P 500 showing resilience with a bullish trend channel. Crypto markets are seeing increased institutional interest. Key sectors to watch: Technology, AI, and Clean Energy. Risk metrics suggest moderate exposure with tight stop-losses.";
+                } else {
+                    const responses = [
+                        "Based on my analysis, I'm seeing a strong bullish pattern. The key indicators suggest a potential upward movement with a 75% confidence level. Consider setting a stop loss at -2% to manage risk.",
+                        "Market volatility is currently high. I recommend waiting for more stable conditions before entering any positions. Keep monitoring these key levels: support at $X and resistance at $Y.",
+                        "The technical analysis shows a promising setup. We're seeing positive momentum with the RSI at 65 and MACD showing bullish crossover. Here's a visualization of the trend:",
+                        "I've analyzed multiple timeframes, and there's a clear trend forming. The 4-hour chart shows strong support, while the daily timeframe confirms the upward momentum.",
+                        "My algorithms detect a potential reversal pattern. Consider taking profits or adjusting your stop loss. The current risk/reward ratio is favorable at 1:3."
+                    ];
+                    response = responses[Math.floor(Math.random() * responses.length)];
+                    shouldAddChart = Math.random() > 0.5;
+                }
+
+                const messageDiv = addMessage(response, 'bot');
+                
+                // Add chart to some responses
+                if (shouldAddChart) {
+                    addChartToMessage(messageDiv);
+                }
+
+                // Add follow-up suggestions
+                const suggestionsDiv = document.createElement('div');
+                suggestionsDiv.className = 'flex flex-wrap gap-2 mt-4';
+                suggestionsDiv.innerHTML = `
+                    <div class="market-suggestion" onclick="suggestMarket('Risk')">Analyze Risk Levels</div>
+                    <div class="market-suggestion" onclick="suggestMarket('Volume')">Check Volume Analysis</div>
+                    <div class="market-suggestion" onclick="suggestMarket('Trend')">Trend Confirmation</div>
+                `;
+                messageDiv.appendChild(suggestionsDiv);
+
+                isTyping = false;
+            }
+        }
+
+        function addMessage(text, sender) {
+            const container = document.getElementById('chatContainer');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            
+            // Format message content
+            const formattedText = text.replace(/\n/g, '<br>');
+            messageDiv.innerHTML = formattedText;
+            
+            container.appendChild(messageDiv);
+            
+            // Smooth scroll to bottom
+            container.scrollTo({
+                top: container.scrollHeight,
+                behavior: 'smooth'
+            });
+            
+            return messageDiv;
+        }
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartY = e.changedTouches[0].screenY;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndY = e.changedTouches[0].screenY;
+            const diff = touchStartY - touchEndY;
+            
+            // If scrolled down more than 50px, hide keyboard
+            if (diff < -50) {
+                document.activeElement.blur();
+            }
+        });
+
+        // Handle orientation change
+        window.addEventListener('orientationchange', () => {
+            setTimeout(() => {
+                const container = document.getElementById('chatContainer');
+                container.scrollTop = container.scrollHeight;
+            }, 100);
+        });
+
+        // Prevent body scroll when near bottom of chat
+        document.getElementById('chatContainer').addEventListener('touchmove', (e) => {
+            const el = e.currentTarget;
+            const isAtBottom = el.scrollHeight - el.scrollTop === el.clientHeight;
+            if (isAtBottom) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+    </script>
+</body>
+</html> 

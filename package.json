@@ -1,0 +1,20 @@
+{
+  "name": "vibetrading-ai",
+  "version": "1.0.0",
+  "description": "AI-powered trading platform with real-time market analysis",
+  "scripts": {
+    "dev": "live-server --port=3000",
+    "build": "npm run optimize-images",
+    "optimize-images": "node scripts/optimize-images.js"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.1",
+    "tailwindcss": "^3.4.1"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "sharp": "^0.33.2",
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.33"
+  }
+}

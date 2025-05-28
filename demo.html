@@ -15,6 +15,8 @@
             --card-background: rgba(255, 255, 255, 0.05);
             --border-color: rgba(255, 255, 255, 0.1);
             --hover-color: #0e8e6d;
+            --primary-rgb: 16, 163, 127;
+            --secondary-rgb: 74, 144, 226;
         }
 
         body {
@@ -249,57 +251,65 @@
 
         .nav-link {
             position: relative;
-            padding: 0.5rem 1rem;
-            color: rgba(255, 255, 255, 0.8);
+            padding: 0.4rem 0.75rem;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.85);
             transition: all 0.2s ease;
+            border-radius: 0.5rem;
+        }
+
+        .nav-link:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .nav-link::after {
             content: '';
             position: absolute;
-            bottom: -1px;
+            bottom: 0;
             left: 50%;
             width: 0;
-            height: 1px;
+            height: 2px;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             transition: all 0.2s ease;
             transform: translateX(-50%);
-            opacity: 0.8;
-        }
-
-        .nav-link:hover {
-            color: white;
+            opacity: 0;
         }
 
         .nav-link:hover::after {
-            width: 80%;
+            width: 60%;
+            opacity: 1;
         }
 
         .nav-container {
             position: relative;
-            padding: 0.5rem;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 0.75rem;
-            backdrop-filter: blur(10px);
+            padding: 0.5rem 0.75rem;
+            border-radius: 1.25rem;
+            background: linear-gradient(
+                to right bottom,
+                rgba(255, 255, 255, 0.05),
+                rgba(255, 255, 255, 0.02)
+            );
+            box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
         }
 
         .nav-container::before {
             content: '';
             position: absolute;
-            top: -1px;
-            left: -1px;
-            right: -1px;
-            bottom: -1px;
-            background: linear-gradient(90deg, 
-                rgba(16, 163, 127, 0.1),
-                rgba(74, 144, 226, 0.1),
-                rgba(16, 163, 127, 0.1)
+            inset: 0;
+            border-radius: 1.25rem;
+            padding: 1px;
+            background: linear-gradient(
+                to right,
+                rgba(var(--primary-rgb), 0.2),
+                rgba(var(--secondary-rgb), 0.2)
             );
-            border-radius: 0.75rem;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
         }
 
         .nav-container:hover::before {
@@ -367,6 +377,26 @@
             .card {
                 padding: 1rem;
                 margin: 0.5rem 0;
+            }
+
+            .nav-container {
+                padding: 0.4rem 0.5rem;
+                border-radius: 1rem;
+                margin: 0.25rem;
+            }
+
+            .hamburger {
+                padding: 0.4rem;
+                margin: -0.2rem;
+            }
+
+            .mobile-menu {
+                border-radius: 1rem;
+                margin: 0.25rem;
+                background: rgba(0, 0, 0, 0.95);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.08);
             }
         }
 
@@ -510,14 +540,18 @@
 
         /* Mobile menu styles */
         .mobile-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             transition: opacity 0.3s ease, transform 0.3s ease;
             opacity: 0;
             transform: translateY(-10px);
             pointer-events: none;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
         }
 
         .mobile-menu.show {
@@ -530,58 +564,24 @@
             display: none;
         }
 
-        /* Enhanced mobile menu buttons */
-        .mobile-menu a {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: linear-gradient(
-                125deg,
-                rgba(255, 255, 255, 0.05) 0%,
-                rgba(255, 255, 255, 0.08) 100%
-            );
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            font-size: 1rem;
-            padding: 1rem 1.25rem;
-            border-radius: 0.75rem;
+        .mobile-menu-link {
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 3.5rem;
+            padding: 0.75rem 1.25rem;
+            font-size: 1rem;
             font-weight: 500;
-            letter-spacing: 0.01em;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            color: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            transition: all 0.3s ease;
+            min-height: 3rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        .mobile-menu a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255, 255, 255, 0.1),
-                transparent
-            );
-            transition: 0.5s ease;
-        }
-
-        .mobile-menu a:hover::before {
-            left: 100%;
-        }
-
-        .mobile-menu a:active {
-            transform: scale(0.98);
-            background: rgba(255, 255, 255, 0.12);
-        }
-
-        /* Add icons to menu items */
-        .mobile-menu a::after {
+        .mobile-menu-link::after {
             content: '→';
             margin-left: 0.5rem;
             opacity: 0;
@@ -589,9 +589,32 @@
             transition: all 0.3s ease;
         }
 
-        .mobile-menu a:hover::after {
+        .mobile-menu-link:hover::after {
             opacity: 1;
             transform: translateX(0);
+        }
+
+        .mobile-menu-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .mobile-menu-link:active {
+            transform: scale(0.98);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu {
+                margin: 0 0.5rem;
+            }
+
+            .mobile-menu .p-4 {
+                padding: 1rem;
+            }
+
+            .mobile-menu-link {
+                margin: 0.25rem 0;
+            }
         }
 
         /* Hamburger button styles */
@@ -602,6 +625,8 @@
             border-radius: 0.5rem;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
         }
 
         .hamburger:hover {
@@ -618,6 +643,17 @@
 
         .mobile-menu.show ~ .hamburger svg {
             transform: rotate(90deg);
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 44px;
+                height: 44px;
+                padding: 0.5rem;
+            }
         }
 
         /* Mobile menu container */
@@ -645,27 +681,58 @@
 
         /* Navigation styles */
         nav {
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .nav-container {
             position: relative;
-            padding: 0.5rem;
-            border-radius: 0.75rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 1.25rem;
+            background: linear-gradient(
+                to right bottom,
+                rgba(255, 255, 255, 0.05),
+                rgba(255, 255, 255, 0.02)
+            );
+            box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
 
-        /* Content spacing */
+        .nav-container::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 1.25rem;
+            padding: 1px;
+            background: linear-gradient(
+                to right,
+                rgba(var(--primary-rgb), 0.2),
+                rgba(var(--secondary-rgb), 0.2)
+            );
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        .nav-container:hover::before {
+            opacity: 0.5;
+        }
+
+        /* Content spacing - remove fixed nav spacing */
         .max-w-4xl {
-            padding-top: 4rem; /* Consistent spacing below navbar */
+            padding-top: 2rem;
         }
 
         /* Mobile menu positioning */
         .mobile-menu {
-            top: 3.5rem; /* Consistent distance from top */
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
         }
 
         @media (max-width: 768px) {
@@ -674,29 +741,63 @@
             }
 
             .nav-container {
-                border-radius: 0;
+                border-radius: 1.25rem;
+                margin: 0.5rem;
             }
 
             .mobile-menu {
-                top: 3.5rem;
+                border-radius: 1.25rem;
+                margin: 0.5rem;
             }
+        }
 
-            .max-w-4xl {
-                padding-top: 4rem;
-            }
+        /* Mobile menu animation styles */
+        #mobileMenu {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        #mobileMenu.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #mobileMenu.show .mobile-menu-link {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        #mobileMenu.show .mobile-menu-link:nth-child(1) { transition-delay: 0.1s; }
+        #mobileMenu.show .mobile-menu-link:nth-child(2) { transition-delay: 0.15s; }
+
+        .mobile-menu-link {
+            font-size: 1.25rem;
+            padding: 1rem 2rem;
+            border-radius: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px) !important;
+        }
+
+        .mobile-menu-link:active {
+            transform: scale(0.98) !important;
         }
     </style>
 </head>
 <body class="p-4">
     <div class="grid-pattern"></div>
-    <nav class="fixed w-full z-50 top-0 left-0">
-        <div class="max-w-7xl mx-auto px-4 py-3">
+    <nav class="relative w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 py-2">
             <div class="nav-container">
-                <div class="flex justify-between items-center">
-                    <div class="flex items-center space-x-8">
-                        <a href="index.html" class="text-xl font-bold gradient-text" data-text="VibeTrading AI">
+                <div class="flex justify-between items-center h-12">
+                    <div class="flex items-center space-x-6">
+                        <a href="index.html" class="text-lg font-bold gradient-text" data-text="VibeTrading AI">
                             <span class="flex items-center">
-                                <svg class="w-8 h-8 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg class="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="url(#nav-gradient)" stroke-width="2"/>
                                     <path d="M2 17L12 22L22 17" stroke="url(#nav-gradient)" stroke-width="2"/>
                                     <path d="M2 12L12 17L22 12" stroke="url(#nav-gradient)" stroke-width="2"/>
@@ -720,11 +821,13 @@
                         </a>
                         <a href="about.html" class="nav-link">About</a>
                     </div>
-                    <button class="hamburger md:hidden" id="hamburgerBtn" aria-label="Toggle menu">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
+                    <div class="md:hidden">
+                        <button onclick="toggleMobileMenu()" class="hamburger flex items-center justify-center" aria-label="Menu">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -846,15 +949,11 @@
         </div>
     </div>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu fixed w-full bg-black/95 backdrop-blur-lg hidden z-50" id="mobileMenu" style="top: 60px;">
-        <div class="p-4 space-y-2">
-            <a href="index.html" class="block w-full text-center py-3 px-4 rounded-lg bg-white/5 hover:bg-white/10">
-                Back to Home
-            </a>
-            <a href="about.html" class="block w-full text-center py-3 px-4 rounded-lg bg-white/5 hover:bg-white/10">
-                About
-            </a>
+    <!-- Mobile Menu (Overlay) -->
+    <div id="mobileMenu" class="hidden fixed inset-0 bg-black/95 backdrop-blur-lg z-50">
+        <div class="flex flex-col items-center justify-center h-full p-4 space-y-4">
+            <a href="index.html" class="mobile-menu-link w-64 text-center transform transition-all duration-300 translate-y-4 opacity-0">Back to Home</a>
+            <a href="about.html" class="mobile-menu-link w-64 text-center transform transition-all duration-300 translate-y-4 opacity-0">About</a>
         </div>
     </div>
 
@@ -1064,73 +1163,31 @@
             }
         }, { passive: false });
 
-        // Mobile menu functionality
-        const hamburgerBtn = document.getElementById('hamburgerBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-
-        function toggleMenu() {
-            if (mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.remove('hidden');
-                // Force a reflow
-                mobileMenu.offsetHeight;
-                mobileMenu.classList.add('show');
-                document.body.style.overflow = 'hidden';
-            } else {
-                mobileMenu.classList.remove('show');
-                setTimeout(() => {
-                    mobileMenu.classList.add('hidden');
-                    document.body.style.overflow = 'auto';
-                }, 300); // Match the transition duration
+        // Enhanced Mobile Menu Toggle with Animation
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            if (menu) {
+                if (menu.classList.contains('hidden')) {
+                    menu.classList.remove('hidden');
+                    // Force a reflow
+                    menu.offsetHeight;
+                    menu.classList.add('show');
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    menu.classList.remove('show');
+                    document.body.style.overflow = '';
+                    setTimeout(() => {
+                        menu.classList.add('hidden');
+                    }, 300);
+                }
             }
         }
 
-        // Add click event listener to hamburger button
-        hamburgerBtn.addEventListener('click', toggleMenu);
-
-        // Close menu when clicking a link
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                toggleMenu();
-            });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!mobileMenu.classList.contains('hidden') && 
-                !mobileMenu.contains(e.target) && 
-                !hamburgerBtn.contains(e.target)) {
-                toggleMenu();
-            }
-        });
-
-        // Close menu on scroll
-        window.addEventListener('scroll', () => {
-            if (!mobileMenu.classList.contains('hidden')) {
-                toggleMenu();
-            }
-        });
-
-        // Handle touch events for swipe to close
-        mobileMenu.addEventListener('touchstart', (e) => {
-            touchStartY = e.changedTouches[0].screenY;
-        });
-
-        mobileMenu.addEventListener('touchend', (e) => {
-            touchEndY = e.changedTouches[0].screenY;
-            if (touchStartY < touchEndY) {
-                toggleMenu();
-            }
-        });
-
-        // Prevent body scroll when menu is open
-        mobileMenu.addEventListener('touchmove', (e) => {
-            e.preventDefault();
-        }, { passive: false });
-
-        // Handle orientation change
-        window.addEventListener('orientationchange', () => {
-            if (!mobileMenu.classList.contains('hidden')) {
-                toggleMenu();
+        // Close menu when clicking links
+        const mobileLinks = document.querySelectorAll('#mobileMenu a');
+        mobileLinks.forEach(link => {
+            link.onclick = () => {
+                toggleMobileMenu();
             }
         });
     </script>

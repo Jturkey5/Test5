@@ -709,14 +709,61 @@
             opacity: 1;
             transform: translateX(0);
         }
+
+        /* Navigation styles */
+        nav {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            position: relative;
+            padding: 0.5rem;
+            border-radius: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        /* Content spacing */
+        .min-h-screen {
+            padding-top: 4rem; /* Consistent spacing below navbar */
+        }
+
+        section:first-of-type {
+            padding-top: 2rem;
+        }
+
+        /* Mobile menu positioning */
+        .mobile-menu {
+            top: 3.5rem; /* Consistent distance from top */
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 0.5rem 0;
+            }
+
+            .nav-container {
+                border-radius: 0;
+            }
+
+            .mobile-menu {
+                top: 3.5rem;
+            }
+
+            .min-h-screen {
+                padding-top: 4rem;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="grid-pattern"></div>
     
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 px-4 py-3">
-        <div class="max-w-7xl mx-auto">
+    <nav class="fixed w-full z-50 top-0 left-0">
+        <div class="max-w-7xl mx-auto px-4 py-3">
             <div class="nav-container">
                 <div class="flex justify-between items-center">
                     <div class="flex items-center space-x-8">

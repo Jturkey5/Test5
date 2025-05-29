@@ -472,6 +472,73 @@
         .token-table tr:last-child td {
             border-bottom: none;
         }
+
+        @media (max-width: 768px) {
+            .pricing-card.featured {
+                transform: none;
+                margin-top: 1rem;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem;
+            }
+            
+            .card {
+                padding: 1rem;
+            }
+            
+            .nav-container {
+                padding: 0.5rem;
+            }
+
+            /* Mobile API Pricing Optimizations */
+            .api-pricing {
+                padding: 1rem;
+                margin-top: 2rem;
+            }
+
+            .token-table {
+                display: block;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                margin: 1rem 0;
+            }
+
+            .token-table th,
+            .token-table td {
+                padding: 0.75rem;
+                min-width: 120px;
+                white-space: normal;
+            }
+
+            .token-table td:last-child {
+                min-width: 200px;
+            }
+
+            .token-price {
+                font-size: 1.75rem;
+            }
+
+            /* Stack API pricing cards on mobile */
+            .api-pricing .grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem;
+            }
+
+            .api-pricing .card {
+                margin: 0.5rem 0;
+            }
+
+            /* Improve table readability on mobile */
+            .token-table thead {
+                background: rgba(255, 255, 255, 0.05);
+            }
+
+            .token-table tbody tr:hover {
+                background: rgba(255, 255, 255, 0.02);
+            }
+        }
     </style>
 </head>
 <body class="gradient-bg">

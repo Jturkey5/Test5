@@ -1119,15 +1119,15 @@
     </div>
 
     <!-- Mobile Menu (Overlay) -->
-    <div id="mobileMenu" class="hidden fixed inset-0 bg-black/95 backdrop-blur-lg z-50">
-        <div class="flex flex-col items-center justify-center h-full p-4 space-y-4">
-            <a href="index.html" class="mobile-menu-link w-64 text-center transform transition-all duration-300 translate-y-4 opacity-0">Home</a>
-            <a href="index.html#markets" class="mobile-menu-link w-64 text-center transform transition-all duration-300 translate-y-4 opacity-0">Markets</a>
-            <a href="#technology" class="mobile-menu-link w-64 text-center transform transition-all duration-300 translate-y-4 opacity-0">Technology</a>
-            <a href="demo.html" class="mobile-menu-link w-64 text-center transform transition-all duration-300 translate-y-4 opacity-0">Demo</a>
-            <a href="pricing.html" class="mobile-menu-link w-64 text-center transform transition-all duration-300 translate-y-4 opacity-0">Pricing</a>
-            <a href="#team" class="mobile-menu-link w-64 text-center transform transition-all duration-300 translate-y-4 opacity-0">Team</a>
-            <a href="index.html#contact" class="mobile-menu-link gradient-bg w-64 text-center transform transition-all duration-300 translate-y-4 opacity-0">Get Started</a>
+    <div id="mobileMenu" class="mobile-menu">
+        <div class="flex flex-col items-center justify-center p-4 space-y-4">
+            <a href="index.html" class="mobile-menu-link w-64 text-center">Home</a>
+            <a href="index.html#markets" class="mobile-menu-link w-64 text-center">Markets</a>
+            <a href="#technology" class="mobile-menu-link w-64 text-center">Technology</a>
+            <a href="demo.html" class="mobile-menu-link w-64 text-center">Demo</a>
+            <a href="pricing.html" class="mobile-menu-link w-64 text-center">Pricing</a>
+            <a href="#team" class="mobile-menu-link w-64 text-center">Team</a>
+            <a href="index.html#contact" class="mobile-menu-link gradient-bg w-64 text-center">Get Started</a>
         </div>
     </div>
 
@@ -1135,16 +1135,18 @@
         // Enhanced Mobile Menu Toggle with Animation
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
+            const body = document.body;
+            
             if (menu) {
-                if (menu.classList.contains('hidden')) {
+                if (!menu.classList.contains('show')) {
                     menu.classList.remove('hidden');
                     // Force a reflow
                     menu.offsetHeight;
                     menu.classList.add('show');
-                    document.body.style.overflow = 'hidden';
+                    body.style.overflow = 'hidden';
                 } else {
                     menu.classList.remove('show');
-                    document.body.style.overflow = '';
+                    body.style.overflow = '';
                     setTimeout(() => {
                         menu.classList.add('hidden');
                     }, 300);
@@ -1153,11 +1155,10 @@
         }
 
         // Close menu when clicking links
-        const mobileLinks = document.querySelectorAll('#mobileMenu a');
-        mobileLinks.forEach(link => {
-            link.onclick = () => {
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
                 toggleMobileMenu();
-            }
+            });
         });
 
         // Smooth scroll for anchor links

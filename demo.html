@@ -6,6 +6,8 @@
     <title>AI Trading Demo - VibeTrading AI</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="shared-nav.css">
+    <script src="shared-nav.js" defer></script>
     <style>
         :root {
             --primary: #10a37f;
@@ -889,12 +891,14 @@
         }
     </style>
 </head>
-<body class="p-4">
+<body>
     <div class="grid-pattern"></div>
-    <nav class="relative w-full z-50">
-        <div class="max-w-7xl mx-auto px-4 py-2">
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="max-w-7xl mx-auto">
             <div class="nav-container">
-                <div class="flex justify-between items-center h-12">
+                <div class="flex justify-between items-center">
                     <div class="flex items-center space-x-6">
                         <a href="index.html" class="text-xl font-bold gradient-text glow" data-text="VibeTrading AI">
                             <span class="flex items-center">
@@ -913,22 +917,20 @@
                             </span>
                         </a>
                     </div>
-                    <div class="hidden md:flex items-center justify-between w-full ml-8">
-                        <div class="flex items-center space-x-8">
-                            <a href="index.html" class="nav-link">Home</a>
-                            <a href="index.html#markets" class="nav-link">Markets</a>
-                            <a href="about.html#technology" class="nav-link">Technology</a>
-                            <a href="demo.html" class="nav-link">Demo</a>
-                            <a href="pricing.html" class="nav-link">Pricing</a>
-                            <a href="about.html#team" class="nav-link">Team</a>
-                        </div>
-                        <div class="flex items-center space-x-4">
-                            <a href="index.html#contact" class="nav-button-primary">Get Started</a>
-                            <a href="demo.html" class="nav-button-secondary">Try Demo</a>
-                        </div>
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="index.html" class="nav-link">Home</a>
+                        <a href="index.html#markets" class="nav-link">Markets</a>
+                        <a href="about.html#technology" class="nav-link">Technology</a>
+                        <a href="demo.html" class="nav-link">Demo</a>
+                        <a href="pricing.html" class="nav-link">Pricing</a>
+                        <a href="about.html#team" class="nav-link">Team</a>
+                    </div>
+                    <div class="hidden md:flex items-center space-x-4">
+                        <a href="index.html#contact" class="nav-button-primary">Get Started</a>
+                        <a href="demo.html" class="nav-button-secondary">Try Demo</a>
                     </div>
                     <div class="md:hidden">
-                        <button onclick="toggleMobileMenu()" class="hamburger flex items-center justify-center" aria-label="Menu">
+                        <button onclick="toggleMobileMenu()" class="hamburger" aria-label="Menu">
                             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                             </svg>
@@ -939,144 +941,146 @@
         </div>
     </nav>
 
-    <div class="max-w-4xl mx-auto mt-20">
-        <div class="text-center mb-8">
-            <h1 class="text-3xl md:text-4xl font-bold mb-4">
-                <span class="gradient-text">AI Trading Assistant Demo</span>
-            </h1>
-            <p class="text-white/80 max-w-2xl mx-auto">
-                Experience the power of our AI trading assistant. Ask questions about market analysis, get trading recommendations, or explore market trends.
-            </p>
-        </div>
-
-        <!-- Features Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-            <div class="card p-4">
-                <div class="w-10 h-10 mb-3 rounded-lg bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
-                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-                    </svg>
-                </div>
-                <h3 class="font-bold mb-1">Smart Analysis</h3>
-                <p class="text-sm text-white/60">Get instant insights on any market or asset</p>
-            </div>
-            <div class="card p-4">
-                <div class="w-10 h-10 mb-3 rounded-lg bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
-                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                    </svg>
-                </div>
-                <h3 class="font-bold mb-1">Live Charts</h3>
-                <p class="text-sm text-white/60">Visual analysis of market trends</p>
-            </div>
-            <div class="card p-4">
-                <div class="w-10 h-10 mb-3 rounded-lg bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
-                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                    </svg>
-                </div>
-                <h3 class="font-bold mb-1">Trading Signals</h3>
-                <p class="text-sm text-white/60">Actionable trading recommendations</p>
-            </div>
-        </div>
-
-        <!-- Chat Interface -->
-        <div class="chat-interface">
-            <div class="message-container" id="chatContainer">
-                <div class="bot-message message">
-                    👋 Hello! I'm your AI trading assistant. Here are some things you can ask me about:
-                    <div class="flex flex-wrap gap-2 mt-4">
-                        <div class="market-suggestion" onclick="suggestMarket('BTC')">Bitcoin Analysis</div>
-                        <div class="market-suggestion" onclick="suggestMarket('ETH')">Ethereum Trends</div>
-                        <div class="market-suggestion" onclick="suggestMarket('AAPL')">Apple Stock</div>
-                        <div class="market-suggestion" onclick="suggestMarket('Market')">Market Overview</div>
-                    </div>
-                    <div class="text-sm text-white/60 mt-4">
-                        Try asking:
-                        <ul class="list-disc list-inside mt-2 space-y-1">
-                            <li>"What's the current trend for Bitcoin?"</li>
-                            <li>"Analyze AAPL's technical indicators"</li>
-                            <li>"Show me potential trading opportunities"</li>
-                            <li>"What's your risk assessment for ETH?"</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="input-container">
-                <div class="input-wrapper">
-                    <input type="text" id="userInput" 
-                        placeholder="Ask about market analysis or trading strategies..."
-                        onkeypress="handleKeyPress(event)">
-                    <button onclick="sendMessage()" class="button">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Example Analysis -->
-        <div class="mt-8">
-            <h2 class="text-xl font-bold mb-4">Example Analysis</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="card p-4">
-                    <h3 class="font-bold mb-2">Technical Analysis</h3>
-                    <div class="space-y-2 text-sm text-white/80">
-                        <div class="flex justify-between">
-                            <span>RSI (14)</span>
-                            <span class="text-green-400">65.8</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>MACD</span>
-                            <span class="text-green-400">Bullish Crossover</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>Moving Averages</span>
-                            <span class="text-green-400">Strong Buy</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card p-4">
-                    <h3 class="font-bold mb-2">Market Sentiment</h3>
-                    <div class="space-y-2 text-sm text-white/80">
-                        <div class="flex justify-between">
-                            <span>News Sentiment</span>
-                            <span class="text-green-400">Positive</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>Social Media</span>
-                            <span class="text-yellow-400">Neutral</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>Institutional Flow</span>
-                            <span class="text-green-400">Bullish</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Disclaimer -->
-        <div class="text-center text-sm text-white/60">
-            <p>This is a demo version of our AI trading assistant. For full access to all features and real-time data, please sign up for a full account.</p>
-            <div class="mt-4">
-                <a href="#" class="button">Get Full Access</a>
-            </div>
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden">
+        <div class="flex flex-col items-center justify-center h-full p-4 space-y-4">
+            <a href="index.html" class="mobile-menu-link w-64">Home</a>
+            <a href="index.html#markets" class="mobile-menu-link w-64">Markets</a>
+            <a href="about.html#technology" class="mobile-menu-link w-64">Technology</a>
+            <a href="demo.html" class="mobile-menu-link w-64">Demo</a>
+            <a href="pricing.html" class="mobile-menu-link w-64">Pricing</a>
+            <a href="about.html#team" class="mobile-menu-link w-64">Team</a>
+            <a href="index.html#contact" class="mobile-menu-link gradient-bg w-64">Get Started</a>
         </div>
     </div>
 
-    <!-- Mobile Menu (Overlay) -->
-    <div id="mobileMenu" class="hidden fixed inset-0 bg-black/95 backdrop-blur-lg z-50">
-        <div class="flex flex-col items-center justify-center h-full p-4 space-y-4">
-            <a href="index.html" class="mobile-menu-link w-64 text-center transform transition-all duration-300 translate-y-4 opacity-0">Home</a>
-            <a href="index.html#markets" class="mobile-menu-link w-64 text-center transform transition-all duration-300 translate-y-4 opacity-0">Markets</a>
-            <a href="about.html#technology" class="mobile-menu-link w-64 text-center transform transition-all duration-300 translate-y-4 opacity-0">Technology</a>
-            <a href="demo.html" class="mobile-menu-link w-64 text-center transform transition-all duration-300 translate-y-4 opacity-0">Demo</a>
-            <a href="pricing.html" class="mobile-menu-link w-64 text-center transform transition-all duration-300 translate-y-4 opacity-0">Pricing</a>
-            <a href="about.html#team" class="mobile-menu-link w-64 text-center transform transition-all duration-300 translate-y-4 opacity-0">Team</a>
-            <a href="index.html#contact" class="mobile-menu-link gradient-bg w-64 text-center transform transition-all duration-300 translate-y-4 opacity-0">Get Started</a>
+    <div class="p-4">
+        <div class="max-w-4xl mx-auto mt-20">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="gradient-text">AI Trading Assistant Demo</span>
+                </h1>
+                <p class="text-white/80 max-w-2xl mx-auto">
+                    Experience the power of our AI trading assistant. Ask questions about market analysis, get trading recommendations, or explore market trends.
+                </p>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                <div class="card p-4">
+                    <div class="w-10 h-10 mb-3 rounded-lg bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold mb-1">Smart Analysis</h3>
+                    <p class="text-sm text-white/60">Get instant insights on any market or asset</p>
+                </div>
+                <div class="card p-4">
+                    <div class="w-10 h-10 mb-3 rounded-lg bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold mb-1">Live Charts</h3>
+                    <p class="text-sm text-white/60">Visual analysis of market trends</p>
+                </div>
+                <div class="card p-4">
+                    <div class="w-10 h-10 mb-3 rounded-lg bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold mb-1">Trading Signals</h3>
+                    <p class="text-sm text-white/60">Actionable trading recommendations</p>
+                </div>
+            </div>
+
+            <!-- Chat Interface -->
+            <div class="chat-interface">
+                <div class="message-container" id="chatContainer">
+                    <div class="bot-message message">
+                        👋 Hello! I'm your AI trading assistant. Here are some things you can ask me about:
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <div class="market-suggestion" onclick="suggestMarket('BTC')">Bitcoin Analysis</div>
+                            <div class="market-suggestion" onclick="suggestMarket('ETH')">Ethereum Trends</div>
+                            <div class="market-suggestion" onclick="suggestMarket('AAPL')">Apple Stock</div>
+                            <div class="market-suggestion" onclick="suggestMarket('Market')">Market Overview</div>
+                        </div>
+                        <div class="text-sm text-white/60 mt-4">
+                            Try asking:
+                            <ul class="list-disc list-inside mt-2 space-y-1">
+                                <li>"What's the current trend for Bitcoin?"</li>
+                                <li>"Analyze AAPL's technical indicators"</li>
+                                <li>"Show me potential trading opportunities"</li>
+                                <li>"What's your risk assessment for ETH?"</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="input-container">
+                    <div class="input-wrapper">
+                        <input type="text" id="userInput" 
+                            placeholder="Ask about market analysis or trading strategies..."
+                            onkeypress="handleKeyPress(event)">
+                        <button onclick="sendMessage()" class="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example Analysis -->
+            <div class="mt-8">
+                <h2 class="text-xl font-bold mb-4">Example Analysis</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="card p-4">
+                        <h3 class="font-bold mb-2">Technical Analysis</h3>
+                        <div class="space-y-2 text-sm text-white/80">
+                            <div class="flex justify-between">
+                                <span>RSI (14)</span>
+                                <span class="text-green-400">65.8</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>MACD</span>
+                                <span class="text-green-400">Bullish Crossover</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Moving Averages</span>
+                                <span class="text-green-400">Strong Buy</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card p-4">
+                        <h3 class="font-bold mb-2">Market Sentiment</h3>
+                        <div class="space-y-2 text-sm text-white/80">
+                            <div class="flex justify-between">
+                                <span>News Sentiment</span>
+                                <span class="text-green-400">Positive</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Social Media</span>
+                                <span class="text-yellow-400">Neutral</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Institutional Flow</span>
+                                <span class="text-green-400">Bullish</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Disclaimer -->
+            <div class="text-center text-sm text-white/60">
+                <p>This is a demo version of our AI trading assistant. For full access to all features and real-time data, please sign up for a full account.</p>
+                <div class="mt-4">
+                    <a href="#" class="button">Get Full Access</a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1084,6 +1088,43 @@
         let isTyping = false;
         let touchStartY = 0;
         let touchEndY = 0;
+
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const isHidden = mobileMenu.classList.contains('hidden');
+            
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                setTimeout(() => {
+                    mobileMenu.classList.add('show');
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Animate menu items
+                    const menuItems = mobileMenu.querySelectorAll('.mobile-menu-link');
+                    menuItems.forEach((item, index) => {
+                        setTimeout(() => {
+                            item.style.transform = 'translateY(0)';
+                            item.style.opacity = '1';
+                        }, index * 100);
+                    });
+                }, 10);
+            } else {
+                mobileMenu.classList.remove('show');
+                document.body.style.overflow = '';
+                
+                // Reset menu items
+                const menuItems = mobileMenu.querySelectorAll('.mobile-menu-link');
+                menuItems.forEach(item => {
+                    item.style.transform = 'translateY(4px)';
+                    item.style.opacity = '0';
+                });
+                
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                }, 300);
+            }
+        }
 
         function handleKeyPress(event) {
             if (event.key === 'Enter' && !isTyping) {
@@ -1285,34 +1326,6 @@
                 e.preventDefault();
             }
         }, { passive: false });
-
-        // Enhanced Mobile Menu Toggle with Animation
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            if (menu) {
-                if (menu.classList.contains('hidden')) {
-                    menu.classList.remove('hidden');
-                    // Force a reflow
-                    menu.offsetHeight;
-                    menu.classList.add('show');
-                    document.body.style.overflow = 'hidden';
-                } else {
-                    menu.classList.remove('show');
-                    document.body.style.overflow = '';
-                    setTimeout(() => {
-                        menu.classList.add('hidden');
-                    }, 300);
-                }
-            }
-        }
-
-        // Close menu when clicking links
-        const mobileLinks = document.querySelectorAll('#mobileMenu a');
-        mobileLinks.forEach(link => {
-            link.onclick = () => {
-                toggleMobileMenu();
-            }
-        });
     </script>
 </body>
 </html> 

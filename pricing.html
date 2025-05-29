@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - VibeTrading AI</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Choose the perfect VibeTrading AI plan for your trading needs. From individual traders to enterprise solutions, find the right pricing tier.">
+    <meta name="keywords" content="AI trading pricing, trading platform cost, cryptocurrency trading plans, stock market AI pricing">
+    <meta name="author" content="VibeTrading AI">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Pricing - VibeTrading AI">
+    <meta property="og:description" content="Choose the perfect VibeTrading AI plan for your trading needs. Transparent pricing with powerful features.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vibetrading.ai/pricing">
+    <meta property="og:image" content="/images/og-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #10a37f;
+            --secondary: #4a90e2;
+            --background: #0a0a0a;
+            --foreground: #ffffff;
+            --card-background: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --hover-color: #0e8e6d;
+            --primary-rgb: 16, 163, 127;
+            --secondary-rgb: 74, 144, 226;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--foreground);
+            font-family: system-ui, -apple-system, sans-serif;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Futuristic background elements */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(16, 163, 127, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(74, 144, 226, 0.15) 0%, transparent 50%),
+                linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            z-index: -1;
+        }
+
+        .grid-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .gradient-text::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: -1;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: blur(8px);
+            opacity: 0.5;
+        }
+
+        .card {
+            background: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 1rem;
+            background: linear-gradient(125deg, transparent 0%, rgba(255, 255, 255, 0.03) 50%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover::after {
+            opacity: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .pricing-card {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card.featured {
+            border: 2px solid var(--primary);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            z-index: 10;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(16, 163, 127, 0.2);
+        }
+
+        .button {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: inline-block;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            text-align: center;
+        }
+
+        .button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            opacity: 0.95;
+        }
+
+        .button.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        .button.secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .feature-check {
+            color: var(--primary);
+            margin-right: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .feature-cross {
+            color: #ef4444;
+            margin-right: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 0.4rem 0.75rem;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.85);
+            transition: all 0.2s ease;
+            border-radius: 0.5rem;
+        }
+
+        .nav-link:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: all 0.2s ease;
+            transform: translateX(-50%);
+            opacity: 0;
+        }
+
+        .nav-link:hover::after {
+            width: 60%;
+            opacity: 1;
+        }
+
+        .nav-button-primary {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.625rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        .nav-button-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(16, 163, 127, 0.3);
+            opacity: 0.95;
+        }
+
+        .nav-button-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 0.625rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            font-size: 0.95rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.2s ease;
+            text-decoration: none;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        .nav-button-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            position: relative;
+            padding: 0.75rem;
+            border-radius: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            background: linear-gradient(90deg, 
+                rgba(16, 163, 127, 0.1),
+                rgba(74, 144, 226, 0.1),
+                rgba(16, 163, 127, 0.1)
+            );
+            border-radius: 0.75rem;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-container:hover::before {
+            opacity: 0.5;
+        }
+
+        .mobile-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(-10px);
+            pointer-events: none;
+        }
+
+        .mobile-menu.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .mobile-menu-link {
+            font-size: 1.25rem;
+            padding: 1rem 2rem;
+            border-radius: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+        }
+
+        .mobile-menu-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            padding: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hamburger:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .glow {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px rgba(16, 163, 127, 0.5); }
+            to { text-shadow: 0 0 20px rgba(74, 144, 226, 0.8); }
+        }
+
+        @media (max-width: 768px) {
+            .pricing-card.featured {
+                transform: none;
+                margin-top: 1rem;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem;
+            }
+            
+            .card {
+                padding: 1rem;
+            }
+            
+            .nav-container {
+                padding: 0.5rem;
+            }
+        }
+
+        nav {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .price-amount {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .price-period {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: normal;
+        }
+
+        .feature-list {
+            margin: 1.5rem 0;
+        }
+
+        .feature-item {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-description {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* API Pricing Styles */
+        .api-pricing {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .token-price {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .token-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 2rem 0;
+        }
+
+        .token-table th,
+        .token-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .token-table th {
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .token-table td {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .token-table tr:last-child td {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body class="gradient-bg">
+    <div class="grid-pattern"></div>
+    <nav class="relative w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 py-2">
+            <div class="nav-container">
+                <div class="flex justify-between items-center h-12">
+                    <div class="flex items-center space-x-6">
+                        <a href="index.html" class="text-xl font-bold gradient-text glow" data-text="VibeTrading AI">
+                            <span class="flex items-center">
+                                <svg class="w-8 h-8 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="url(#nav-gradient)" stroke-width="2"/>
+                                    <path d="M2 17L12 22L22 17" stroke="url(#nav-gradient)" stroke-width="2"/>
+                                    <path d="M2 12L12 17L22 12" stroke="url(#nav-gradient)" stroke-width="2"/>
+                                    <defs>
+                                        <linearGradient id="nav-gradient" x1="2" y1="12" x2="22" y2="12">
+                                            <stop offset="0%" stop-color="#10a37f"/>
+                                            <stop offset="100%" stop-color="#4a90e2"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                                VibeTrading AI
+                            </span>
+                        </a>
+                    </div>
+                    <div class="hidden md:flex items-center justify-between w-full ml-8">
+                        <div class="flex items-center space-x-8">
+                            <a href="index.html" class="nav-link">Home</a>
+                            <a href="index.html#markets" class="nav-link">Markets</a>
+                            <a href="about.html#technology" class="nav-link">Technology</a>
+                            <a href="demo.html" class="nav-link">Demo</a>
+                            <a href="pricing.html" class="nav-link">Pricing</a>
+                            <a href="about.html#team" class="nav-link">Team</a>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <a href="index.html#contact" class="nav-button-primary">Get Started</a>
+                        </div>
+                    </div>
+                    <div class="md:hidden">
+                        <button onclick="toggleMobileMenu()" class="hamburger flex items-center justify-center" aria-label="Menu">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu (Overlay) -->
+    <div id="mobileMenu" class="hidden fixed inset-0 bg-black/95 backdrop-blur-lg z-50">
+        <div class="flex flex-col items-center justify-center h-full p-4 space-y-4">
+            <a href="index.html" class="mobile-menu-link w-64 text-center transform transition-all duration-300 translate-y-4 opacity-0">Home</a>
+            <a href="index.html#markets" class="mobile-menu-link w-64 text-center transform transition-all duration-300 translate-y-4 opacity-0">Markets</a>
+            <a href="about.html#technology" class="mobile-menu-link w-64 text-center transform transition-all duration-300 translate-y-4 opacity-0">Technology</a>
+            <a href="demo.html" class="mobile-menu-link w-64 text-center transform transition-all duration-300 translate-y-4 opacity-0">Demo</a>
+            <a href="pricing.html" class="mobile-menu-link w-64 text-center transform transition-all duration-300 translate-y-4 opacity-0">Pricing</a>
+            <a href="about.html#team" class="mobile-menu-link w-64 text-center transform transition-all duration-300 translate-y-4 opacity-0">Team</a>
+            <a href="index.html#contact" class="mobile-menu-link gradient-bg w-64 text-center transform transition-all duration-300 translate-y-4 opacity-0">Get Started</a>
+        </div>
+    </div>
+
+    <div class="min-h-screen pt-16">
+        <!-- Hero Section -->
+        <section class="py-20 px-4 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto text-center relative z-10">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                    <span class="gradient-text glow" data-text="Simple, Transparent Pricing">Simple, Transparent Pricing</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-white/80 mb-8 max-w-3xl mx-auto px-4">
+                    Choose the perfect plan for your trading journey. All plans include our advanced AI technology with no hidden fees.
+                </p>
+            </div>
+        </section>
+
+        <!-- Pricing Cards Section -->
+        <section class="py-16">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pricing-grid">
+                    <!-- Starter Plan -->
+                    <div class="card pricing-card">
+                        <div class="plan-name">Starter</div>
+                        <div class="plan-description">Perfect for individual traders getting started with AI-powered trading</div>
+                        <div class="mb-6">
+                            <span class="price-amount gradient-text" data-text="$29">$29</span>
+                            <span class="price-period">/month</span>
+                        </div>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <i class="fas fa-check feature-check"></i>
+                                <span>5 AI trading signals per day</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check feature-check"></i>
+                                <span>Basic market analysis</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check feature-check"></i>
+                                <span>Email alerts</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check feature-check"></i>
+                                <span>Mobile app access</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check feature-check"></i>
+                                <span>Community forum access</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-times feature-cross"></i>
+                                <span>Advanced pattern recognition</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-times feature-cross"></i>
+                                <span>Portfolio optimization</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-times feature-cross"></i>
+                                <span>API access</span>
+                            </div>
+                        </div>
+                        <a href="#contact" class="button secondary">Start Free Trial</a>
+                    </div>
+
+                    <!-- Pro Plan -->
+                    <div class="card pricing-card featured">
+                        <div class="plan-name">Professional</div>
+                        <div class="plan-description">Advanced features for serious traders and small hedge funds</div>
+                        <div class="mb-6">
+                            <span class="price-amount gradient-text" data-text="$99">$99</span>
+                            <span class="price-period">/month</span>
+                        </div>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <i class="fas fa-check feature-check"></i>
+                                <span>Unlimited AI trading signals</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check feature-check"></i>
+                                <span>Advanced market analysis</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check feature-check"></i>
+                                <span>Real-time alerts (SMS + Email)</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check feature-check"></i>
+                                <span>Advanced pattern recognition</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check feature-check"></i>
+                                <span>Portfolio optimization</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check feature-check"></i>
+                                <span>Risk management tools</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check feature-check"></i>
+                                <span>Basic API access</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check feature-check"></i>
+                                <span>Priority support</span>
+                            </div>
+                        </div>
+                        <a href="#contact" class="button">Start Free Trial</a>
+                    </div>
+
+                    <!-- Enterprise Plan -->
+                    <div class="card pricing-card">
+                        <div class="plan-name">Enterprise</div>
+                        <div class="plan-description">Custom solutions for institutional traders and large organizations</div>
+                        <div class="mb-6">
+                            <span class="price-amount gradient-text" data-text="Custom">Custom</span>
+                            <span class="price-period">pricing</span>
+                        </div>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <i class="fas fa-check feature-check"></i>
+                                <span>Everything in Professional</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check feature-check"></i>
+                                <span>Custom AI model training</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check feature-check"></i>
+                                <span>White-label solutions</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check feature-check"></i>
+                                <span>Full API access</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check feature-check"></i>
+                                <span>Dedicated account manager</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check feature-check"></i>
+                                <span>Custom integrations</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check feature-check"></i>
+                                <span>24/7 phone support</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check feature-check"></i>
+                                <span>SLA guarantees</span>
+                            </div>
+                        </div>
+                        <a href="#contact" class="button secondary">Contact Sales</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- API Pricing Section -->
+        <section class="py-16 bg-black/30">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="api-pricing">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">
+                        <span class="gradient-text" data-text="API Pricing">API Pricing</span>
+                    </h2>
+                    <p class="text-xl text-white/80 text-center mb-12">
+                        Flexible token-based pricing for API access. Only pay for what you use.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                        <div class="card">
+                            <div class="text-center">
+                                <div class="token-price">$0.01</div>
+                                <div class="text-sm text-white/60 mt-1">per token</div>
+                            </div>
+                            <div class="mt-4 text-center text-white/80">
+                                Basic API Access
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="text-center">
+                                <div class="token-price">$0.008</div>
+                                <div class="text-sm text-white/60 mt-1">per token</div>
+                            </div>
+                            <div class="mt-4 text-center text-white/80">
+                                100K+ tokens/month
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="text-center">
+                                <div class="token-price">$0.005</div>
+                                <div class="text-sm text-white/60 mt-1">per token</div>
+                            </div>
+                            <div class="mt-4 text-center text-white/80">
+                                1M+ tokens/month
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <table class="token-table">
+                            <thead>
+                                <tr>
+                                    <th>API Feature</th>
+                                    <th>Tokens Used</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Market Analysis</td>
+                                    <td>10 tokens</td>
+                                    <td>Basic market trend analysis and signals</td>
+                                </tr>
+                                <tr>
+                                    <td>Pattern Recognition</td>
+                                    <td>25 tokens</td>
+                                    <td>Advanced technical pattern identification</td>
+                                </tr>
+                                <tr>
+                                    <td>Portfolio Optimization</td>
+                                    <td>50 tokens</td>
+                                    <td>AI-driven portfolio rebalancing suggestions</td>
+                                </tr>
+                                <tr>
+                                    <td>Risk Analysis</td>
+                                    <td>30 tokens</td>
+                                    <td>Comprehensive risk assessment and metrics</td>
+                                </tr>
+                                <tr>
+                                    <td>Custom Strategy</td>
+                                    <td>100 tokens</td>
+                                    <td>Personalized trading strategy development</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-center mt-8">
+                        <a href="#contact" class="button inline-block max-w-md">Start Using API</a>
+                        <p class="text-sm text-white/60 mt-4">Free API credits included with Professional and Enterprise plans</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="py-16 bg-black/30">
+            <div class="max-w-4xl mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+                    <span class="gradient-text" data-text="Frequently Asked Questions">Frequently Asked Questions</span>
+                </h2>
+                <div class="space-y-6">
+                    <div class="card">
+                        <h3 class="text-xl font-bold mb-3">Do you offer a free trial?</h3>
+                        <p class="text-white/80">Yes! All plans come with a 14-day free trial. No credit card required to start.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-xl font-bold mb-3">Can I cancel anytime?</h3>
+                        <p class="text-white/80">Absolutely. You can cancel your subscription at any time with no cancellation fees. Your access will continue until the end of your current billing period.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-xl font-bold mb-3">What payment methods do you accept?</h3>
+                        <p class="text-white/80">We accept all major credit cards, PayPal, and bank transfers for Enterprise plans. All payments are processed securely.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-xl font-bold mb-3">Is there a setup fee?</h3>
+                        <p class="text-white/80">No setup fees for Starter and Professional plans. Enterprise plans may include a one-time setup fee depending on customization requirements.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-xl font-bold mb-3">Can I upgrade or downgrade my plan?</h3>
+                        <p class="text-white/80">Yes, you can change your plan at any time. Upgrades take effect immediately, while downgrades take effect at the next billing cycle.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section id="contact" class="py-16">
+            <div class="max-w-7xl mx-auto px-4 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8">
+                    <span class="gradient-text" data-text="Ready to Start Trading Smarter?">Ready to Start Trading Smarter?</span>
+                </h2>
+                <p class="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
+                    Join thousands of traders already using VibeTrading AI to make better investment decisions. Start your free trial today.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="#" class="button text-lg">Start Free Trial</a>
+                </div>
+                <p class="text-sm text-white/60 mt-4">No credit card required • 14-day free trial • Cancel anytime</p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Enhanced Mobile Menu Toggle with Animation
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            if (menu) {
+                if (menu.classList.contains('hidden')) {
+                    menu.classList.remove('hidden');
+                    // Force a reflow
+                    menu.offsetHeight;
+                    menu.classList.add('show');
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    menu.classList.remove('show');
+                    document.body.style.overflow = '';
+                    setTimeout(() => {
+                        menu.classList.add('hidden');
+                    }, 300);
+                }
+            }
+        }
+
+        // Close menu when clicking links
+        const mobileLinks = document.querySelectorAll('#mobileMenu a');
+        mobileLinks.forEach(link => {
+            link.onclick = () => {
+                toggleMobileMenu();
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

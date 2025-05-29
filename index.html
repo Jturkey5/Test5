@@ -520,6 +520,51 @@
             opacity: 1;
         }
 
+        .nav-button-primary {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.625rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        .nav-button-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(16, 163, 127, 0.3);
+            opacity: 0.95;
+        }
+
+        .nav-button-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 0.625rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            font-size: 0.95rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.2s ease;
+            text-decoration: none;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        .nav-button-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+        }
+
         .nav-container {
             position: relative;
             padding: 0.75rem;
@@ -664,13 +709,17 @@
                             </span>
                         </a>
                     </div>
-                    <div class="hidden md:flex items-center space-x-1">
-                        <a href="about.html" class="nav-link">About</a>
-                        <a href="#markets" class="nav-link">Markets</a>
-                        <a href="#technology" class="nav-link">Technology</a>
-                        <a href="demo.html" class="nav-link">Demo</a>
-                        <div class="ml-4">
-                            <a href="#contact" class="button">Get Started</a>
+                    <div class="hidden md:flex items-center justify-between w-full ml-8">
+                        <div class="flex items-center space-x-8">
+                            <a href="about.html" class="nav-link">About</a>
+                            <a href="#markets" class="nav-link">Markets</a>
+                            <a href="#technology" class="nav-link">Technology</a>
+                            <a href="demo.html" class="nav-link">Demo</a>
+                            <a href="pricing.html" class="nav-link">Pricing</a>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <a href="#contact" class="nav-button-primary">Get Started</a>
+                            <a href="demo.html" class="nav-button-secondary">Try Demo</a>
                         </div>
                     </div>
                     <div class="md:hidden">
@@ -692,6 +741,7 @@
             <a href="#markets" class="mobile-menu-link w-64 text-center transform transition-all duration-300 translate-y-4 opacity-0">Markets</a>
             <a href="#technology" class="mobile-menu-link w-64 text-center transform transition-all duration-300 translate-y-4 opacity-0">Technology</a>
             <a href="demo.html" class="mobile-menu-link w-64 text-center transform transition-all duration-300 translate-y-4 opacity-0">Demo</a>
+            <a href="pricing.html" class="mobile-menu-link w-64 text-center transform transition-all duration-300 translate-y-4 opacity-0">Pricing</a>
             <a href="#contact" class="mobile-menu-link gradient-bg w-64 text-center transform transition-all duration-300 translate-y-4 opacity-0">Get Started</a>
         </div>
     </div>
@@ -797,21 +847,33 @@
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                     <div class="card p-8">
-                        <div class="text-3xl mb-4">🤖</div>
+                        <div class="w-12 h-12 mb-4 rounded-lg bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
                         <h3 class="text-xl font-bold mb-4">Advanced LLM Technology</h3>
                         <p class="text-white/80">
                             Our AI trading assistant is powered by state-of-the-art language models, trained on decades of market data and financial expertise.
                         </p>
                     </div>
                     <div class="card p-8">
-                        <div class="text-3xl mb-4">📊</div>
+                        <div class="w-12 h-12 mb-4 rounded-lg bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                        </div>
                         <h3 class="text-xl font-bold mb-4">Real-time Analysis</h3>
                         <p class="text-white/80">
                             Get instant market insights, trend analysis, and trading recommendations backed by powerful AI algorithms.
                         </p>
                     </div>
                     <div class="card p-8">
-                        <div class="text-3xl mb-4">🎯</div>
+                        <div class="w-12 h-12 mb-4 rounded-lg bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
                         <h3 class="text-xl font-bold mb-4">Precision Trading</h3>
                         <p class="text-white/80">
                             Make informed decisions with our AI's proven 87% accuracy rate in trend prediction and pattern recognition.

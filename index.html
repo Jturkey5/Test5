@@ -717,9 +717,8 @@
                             <a href="demo.html" class="nav-link">Demo</a>
                             <a href="pricing.html" class="nav-link">Pricing</a>
                         </div>
-                        <div class="flex items-center space-x-4">
+                        <div class="hidden md:flex items-center space-x-4">
                             <a href="#contact" class="nav-button-primary">Get Started</a>
-                            <a href="demo.html" class="nav-button-secondary">Try Demo</a>
                         </div>
                     </div>
                     <div class="md:hidden">
@@ -753,15 +752,41 @@
                 <div class="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 opacity-30"></div>
             </div>
             <div class="max-w-7xl mx-auto text-center relative z-10">
+                <div class="mb-6">
+                    <div class="inline-flex items-center space-x-6 bg-black/30 backdrop-blur-sm border border-white/10 rounded-full px-8 py-3 mb-6">
+                        <div class="text-center">
+                            <div class="text-2xl md:text-3xl font-bold gradient-text">87%</div>
+                            <div class="text-xs text-white/60">Win Rate</div>
+                        </div>
+                        <div class="w-px h-8 bg-white/20"></div>
+                        <div class="text-center">
+                            <div class="text-2xl md:text-3xl font-bold gradient-text">2.8x</div>
+                            <div class="text-xs text-white/60">Returns</div>
+                        </div>
+                        <div class="w-px h-8 bg-white/20"></div>
+                        <div class="text-center">
+                            <div class="text-2xl md:text-3xl font-bold gradient-text">24/7</div>
+                            <div class="text-xs text-white/60">Analysis</div>
+                        </div>
+                    </div>
+                </div>
                 <h1 class="text-5xl md:text-7xl font-bold mb-6 hero-text">
-                    <span class="gradient-text glow" data-text="Trading, Elevated">Trading, Elevated</span>
+                    <span class="gradient-text glow" data-text="AI That Trades Smarter">AI That Trades Smarter</span>
+                    <br>
+                    <span class="text-white/90">Than You Ever Could</span>
                 </h1>
-                <p class="text-xl md:text-2xl text-white/80 mb-8 max-w-2xl mx-auto px-4 floating">
-                    Experience the future of trading with our advanced AI system
+                <p class="text-xl md:text-2xl text-white/80 mb-4 max-w-4xl mx-auto px-4">
+                    <strong class="text-white">Our AI analyzes 10,000+ market signals per second, identifies high-probability trades, and executes risk-managed strategies</strong>
+                </p>
+                <p class="text-lg text-white/70 mb-8 max-w-3xl mx-auto px-4 floating">
+                    Real-time market analysis • Automated trading signals • Advanced risk management • 24/7 monitoring
                 </p>
                 <div class="flex flex-wrap justify-center gap-4">
-                    <a href="demo.html" class="button text-lg">Try Demo</a>
-                    <a href="#markets" class="button text-lg bg-white/10 hover:bg-white/20">View Markets</a>
+                    <a href="demo.html" class="button text-lg">Try Demo Free</a>
+                    <a href="#markets" class="button text-lg bg-white/10 hover:bg-white/20">View Live Results</a>
+                </div>
+                <div class="mt-6 text-sm text-white/50">
+                    ✓ No credit card required • ✓ 14-day free trial • ✓ Join 50,000+ traders
                 </div>
             </div>
         </section>
@@ -839,59 +864,23 @@
             </div>
         </section>
 
-        <!-- About Section -->
-        <section id="about" class="py-16">
-            <div class="max-w-7xl mx-auto px-4">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
-                    <span class="gradient-text" data-text="Why Choose VibeTrading AI?">Why Choose VibeTrading AI?</span>
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                    <div class="card p-8">
-                        <div class="w-12 h-12 mb-4 rounded-lg bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold mb-4">Advanced LLM Technology</h3>
-                        <p class="text-white/80">
-                            Our AI trading assistant is powered by state-of-the-art language models, trained on decades of market data and financial expertise.
-                        </p>
-                    </div>
-                    <div class="card p-8">
-                        <div class="w-12 h-12 mb-4 rounded-lg bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold mb-4">Real-time Analysis</h3>
-                        <p class="text-white/80">
-                            Get instant market insights, trend analysis, and trading recommendations backed by powerful AI algorithms.
-                        </p>
-                    </div>
-                    <div class="card p-8">
-                        <div class="w-12 h-12 mb-4 rounded-lg bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold mb-4">Precision Trading</h3>
-                        <p class="text-white/80">
-                            Make informed decisions with our AI's proven 87% accuracy rate in trend prediction and pattern recognition.
-                        </p>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <a href="about.html" class="button">Learn More About Us</a>
-                </div>
-            </div>
-        </section>
-
         <!-- Technology Section -->
         <section id="technology" class="py-16 bg-black/30">
             <div class="max-w-7xl mx-auto px-4">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">
                     <span class="gradient-text" data-text="Our Technology">Our Technology</span>
                 </h2>
+                
+                <!-- Mission Statement -->
+                <div class="max-w-4xl mx-auto text-center mb-12">
+                    <div class="card p-8">
+                        <h3 class="text-2xl font-bold mb-6 gradient-text">Our Mission</h3>
+                        <p class="text-lg text-white/90 leading-relaxed">
+                            At VibeTrading AI, we're on a mission to democratize algorithmic trading by combining cutting-edge artificial intelligence with intuitive user experience. We believe that sophisticated trading strategies shouldn't be limited to institutional investors.
+                        </p>
+                    </div>
+                </div>
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                     <div class="space-y-8">
                         <div class="card p-6">
@@ -950,6 +939,53 @@
             </div>
         </section>
 
+        <!-- About Section -->
+        <section id="about" class="py-16">
+            <div class="max-w-7xl mx-auto px-4">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12">
+                    <span class="gradient-text" data-text="Why Choose VibeTrading AI?">Why Choose VibeTrading AI?</span>
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    <div class="card p-8">
+                        <div class="w-12 h-12 mb-4 rounded-lg bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Advanced LLM Technology</h3>
+                        <p class="text-white/80">
+                            Our AI trading assistant is powered by state-of-the-art language models, trained on decades of market data and financial expertise.
+                        </p>
+                    </div>
+                    <div class="card p-8">
+                        <div class="w-12 h-12 mb-4 rounded-lg bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Real-time Analysis</h3>
+                        <p class="text-white/80">
+                            Get instant market insights, trend analysis, and trading recommendations backed by powerful AI algorithms.
+                        </p>
+                    </div>
+                    <div class="card p-8">
+                        <div class="w-12 h-12 mb-4 rounded-lg bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Precision Trading</h3>
+                        <p class="text-white/80">
+                            Make informed decisions with our AI's proven 87% accuracy rate in trend prediction and pattern recognition.
+                        </p>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a href="about.html" class="button">Learn More</a>
+                </div>
+            </div>
+        </section>
+
         <!-- Contact Section -->
         <section id="contact" class="py-16">
             <div class="max-w-7xl mx-auto px-4 text-center">
@@ -959,7 +995,7 @@
                 <p class="text-xl text-white/80 mb-8">
                     Join the next generation of AI-powered trading and experience the future of financial markets.
                 </p>
-                <a href="#" class="button text-lg">Get Started Now</a>
+                <a href="#" class="button text-lg">Get Started</a>
             </div>
         </section>
     </div>

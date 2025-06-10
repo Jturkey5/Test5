@@ -334,7 +334,7 @@
             padding: 3rem;
             margin: 3rem 0 6rem 0;
             border-radius: 1rem;
-            height: 600px;
+            height: 500px;
             backdrop-filter: blur(20px);
         }
 
@@ -363,37 +363,6 @@
         .chart-canvas {
             height: 400px !important;
             max-height: 400px !important;
-        }
-
-        .chart-metrics {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
-        }
-
-        .chart-metric {
-                text-align: center;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-        }
-
-        .chart-metric-label {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-        }
-
-        .chart-metric-value {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: white;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         /* How It Works */
@@ -841,16 +810,16 @@
                             </div>
             <div class="stat-card">
                 <div class="stat-header">
-                    <div class="stat-label">Average Trade</div>
+                    <div class="stat-label">Daily Volume</div>
                     <div class="stat-trend trend-up">
-                        +1.2% MoM
+                        +28% MoM
                         <i class="fas fa-arrow-up trend-icon"></i>
-                        </div>
                     </div>
-                <div class="stat-number">3.4%</div>
-                <div class="stat-description">Per winning position</div>
-                <div class="stat-detail">1.8:1 profit ratio</div>
-                            </div>
+                </div>
+                <div class="stat-number">$847M</div>
+                <div class="stat-description">Average daily volume</div>
+                <div class="stat-detail">Across all markets</div>
+            </div>
             <div class="stat-card">
                 <div class="stat-header">
                     <div class="stat-label">Max Drawdown</div>
@@ -869,28 +838,10 @@
             <div class="chart-header">
                 <h3 class="chart-title">Risk-Adjusted Performance vs. Benchmarks</h3>
                 <div class="performance-badge">+284% YTD</div>
-                    </div>
-            <canvas id="performanceChart" class="chart-canvas"></canvas>
-            <div class="chart-metrics">
-                <div class="chart-metric">
-                    <div class="chart-metric-label">Sharpe Ratio</div>
-                    <div class="chart-metric-value">0.92</div>
-                    </div>
-                <div class="chart-metric">
-                    <div class="chart-metric-label">Sortino Ratio</div>
-                    <div class="chart-metric-value">1.24</div>
-                    </div>
-                <div class="chart-metric">
-                    <div class="chart-metric-label">Beta</div>
-                    <div class="chart-metric-value">0.32</div>
-                    </div>
-                <div class="chart-metric">
-                    <div class="chart-metric-label">Information Ratio</div>
-                    <div class="chart-metric-value">1.85</div>
-                    </div>
-                </div>
             </div>
-        </section>
+            <canvas id="performanceChart" class="chart-canvas"></canvas>
+        </div>
+    </section>
 
     <!-- How It Works -->
     <section class="how-it-works">
@@ -930,14 +881,14 @@
         <div class="cta-content">
             <h2 class="cta-title">Ready to Deploy?</h2>
             <p class="cta-subtitle">
-                Join leading quantitative funds and institutional traders using our infrastructure
+                Join 50,000 other profitable traders using our infrastructure
             </p>
             
             <div class="hero-cta">
                 <a href="#" class="cta-primary">
                     Request API Documentation
                 </a>
-                    </div>
+            </div>
             
             <div class="trust-indicators">
                 <div class="trust-item">
@@ -963,9 +914,9 @@
     </div>
 
     <!-- Contact Button -->
-    <a href="mailto:contactus@kyma.com" class="contact-button">
+    <a href="contact.html" class="contact-button">
         <i class="fas fa-envelope"></i>
-        <span>Contact Institutional Sales</span>
+        <span>Contact Us</span>
     </a>
 
     <script>
